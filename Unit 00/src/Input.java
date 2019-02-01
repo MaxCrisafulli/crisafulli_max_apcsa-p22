@@ -23,10 +23,23 @@ public class Input
 
 		System.out.print("Enter an integer :: ");
 		intOne = keyboard.nextInt();
-
-
 		System.out.print("Enter an integer :: ");
 		intTwo = keyboard.nextInt();
+
+		System.out.print("Enter a double :: ");
+		doubleOne = keyboard.nextInt();
+		System.out.print("Enter a double :: ");
+		doubleTwo = keyboard.nextInt();
+		
+		System.out.print("Enter a float :: ");
+		floatOne = keyboard.nextInt();
+		System.out.print("Enter a float :: ");
+		floatTwo = keyboard.nextInt();
+		
+		System.out.print("Enter an short :: ");
+		shortOne = keyboard.nextShort();
+		System.out.print("Enter an short :: ");
+		shortTwo = keyboard.nextShort();
 
 
 		//add in input for all variables
@@ -35,6 +48,15 @@ public class Input
 		System.out.println();
 		System.out.println("integer one = " + intOne );
 		System.out.println("integer two = " + intTwo );
+		System.out.println();
+		System.out.println("integer one = " + doubleOne );
+		System.out.println("integer two = " + doubleTwo );
+		System.out.println();
+		System.out.println("integer one = " + floatOne );
+		System.out.println("integer two = " + floatTwo );
+		System.out.println();
+		System.out.println("integer one = " + shortOne );
+		System.out.println("integer two = " + shortTwo );
 
 		//add in output for all variables
 
