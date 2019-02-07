@@ -16,8 +16,10 @@ public class DiscountRunner
 		Scanner keyboard = new Scanner(System.in);
 		
 		out.print("Enter the original bill amount :: ");
-		double amt = keyboard.nextDouble();
-		
-
+		double bill = keyboard.nextDouble();
+		Discount test = new Discount();
+		test.setNums();
+		test.getDiscountedBill(bill);
+		test.printNewBill();
 	}
 }
