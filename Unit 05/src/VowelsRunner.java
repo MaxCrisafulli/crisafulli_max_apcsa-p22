@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
-//Date -
+//Name - Max Crisafulli
+//Date - 2/7/2019
 
 public class VowelsRunner
 {
@@ -11,10 +11,10 @@ public class VowelsRunner
 			
 		System.out.println(  s.go(  "dog#cat#pigaplus")    );
 		System.out.println(  s.go(  "pigs#apluscompsci#food")    );
-		System.out.println(  s.go(  "##catgiraffeapluscompsci")    );
+		System.out.println(  s.go(  "##catgiraffeapluscompsc")    );
 		System.out.println(  s.go(  "apluscatsanddogsaplus###")    );
-		System.out.println(  s.go(  "##")    );
-		System.out.println(  s.go(  "aplusdog#13337#pigaplusprogram")    );
+		System.out.println(  s.go(  "###")    );
+		System.out.println(  s.go(  "Aplusdog#13337#pigaplusprogram")    );
 		System.out.println(  s.go(  "code#H00P#code1234")    );
 		System.out.println(  s.go(  "##wowgira77##eplus")    );
 		System.out.println(  s.go(  "catsandaplusdogsaplus###")    );
