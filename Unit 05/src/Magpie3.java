@@ -45,6 +45,30 @@ public class Magpie3
 		{
 			response = "Tell me more about your family.";
 		}
+		else if (statement.trim().length() == 0) {
+			response = "Say something, please";
+		}
+		else if (findKeyword(statement ,"dog") >= 0 || findKeyword(statement ,"cat") >= 0)
+		{
+			response = "Tell me more about your pet";
+		}
+		else if (findKeyword(statement ,"Mauro") >= 0 || findKeyword(statement ,"mauro") >= 0) {
+			response = "Mr. Mauro, that's good";
+		}
+		else if (findKeyword(statement ,"videogames") >= 0 || findKeyword(statement ,"video games") >= 0) {
+			response = "Computer games, I like those";
+		}
+		else if (findKeyword(statement ,"car") >= 0 || findKeyword(statement ,"truck") >= 0 || findKeyword(statement ,"motorbike") >= 0 )
+		{
+			response = "Motor vehicles, those are cool";
+		}
+		else if (findKeyword(statement ,"idiot") >= 0 || findKeyword(statement ,"stupid") >= 0) {
+			response = "No that's what you are";
+		}
+		else if (findKeyword(statement ,"no") >= 0)
+		{
+			response = "Why so negative?";
+		}
 		else
 		{
 			response = getRandomResponse();
@@ -136,6 +160,13 @@ public class Magpie3
 	{
 		return findKeyword(statement, goal, 0);
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * Pick a default response to use if nothing else fits.
