@@ -6,12 +6,12 @@ import static java.lang.System.*;
 
 public class LetterRemover
 {
-   private String sentence;
+   private String sentence, newsentence;
    private char lookFor;
 
 	public LetterRemover()
 	{
-		setRemover("",'a');
+		setRemover("",'0');
 	}
 
 	public LetterRemover (String s, char rem) {
@@ -23,24 +23,28 @@ public class LetterRemover
 	{
 		sentence = s;
 		lookFor = rem;
+		newsentence = "";
 	}
 
 	
 	public String removeLetters()
 	{
-		String cleaned = sentence;
-		int loc = sentence.indexOf(lookFor);
-		while (loc < sentence.length() ) {
-			cleaned = sentence.substring(0, loc);
-			loc = cleaned.indexOf(lookFor);
+		String cleaned = "";
+		for (int i = 0; i < sentence.length(); i++) {
+			if (sentence.charAt(i) == lookFor) {
+			//do nothing
+			}
+			else {
+				cleaned += sentence.charAt(i);
+			}
 		}
-		
+		newsentence = cleaned;
 		return cleaned;
 	}
 	
 
 	public String toString()
 	{
-		return sentence + " - letter to remove " + lookFor + removeLetters();
+		return String.format(sentence + " - letter to remove " + lookFor + "%n" + newsentence);
 	}
 }
