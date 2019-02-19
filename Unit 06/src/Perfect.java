@@ -6,17 +6,46 @@ import static java.lang.System.*;
 
 public class Perfect
 {
-   private int number;
-
-	//add constructors
-
-	//add a set method
+   private int number, sum;
+   
+   public Perfect() {
+	   setNum(0);
+   }
+   
+   public Perfect(int num) {
+	   setNum(num);
+   }
+   
+   public void setNum (int num) {
+	   number = num;
+   }
 
 	public boolean isPerfect()
 	{
-		return false;
+		int sum = 0;
+		for (int i=1; i < number; i++) {
+			if (number%i == 0) {
+				sum += i;
+			}
+		}
+		if (number == sum) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
-	//add a toString	
+	
+	
+	public String toString() {
+		if (isPerfect() == true) {
+			return number + " is perfect";
+		}
+		else {
+			return number + " is not perfect";
+		}
+		
+	}
 	
 }

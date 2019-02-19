@@ -6,38 +6,55 @@ import static java.lang.System.*;
 
 public class Word
 {
-	private String word;
+	private String word, backword, charbeg, charend;
 
 	public Word()
 	{
+		setString("");
 	}
 
 	public Word(String s)
 	{
+		setString(s);
 	}
 
 	public void setString(String s)
 	{
+		word = s;
+		charbeg = "";
+		charend = "";
+		backword = "";
 	}
 
-	public char getFirstChar()
+	public String getFirstChar()
 	{
-		return 0;
+		charbeg = word.substring(0,1);
+		return charbeg;
 	}
 
-	public char getLastChar()
+	public String getLastChar()
 	{
-		return 0;
+		charend = word.substring(word.length()-1,word.length());
+		return charend;
 	}
 
 	public String getBackWards()
 	{
-		String back="";
-		return back;
+		for (int i = (word.length()-1); i > -1; i--) {
+			backword = backword + word.substring(i,i+1);
+		}
+		return backword;
+	}
+	
+	public void runAll() {
+		getFirstChar();
+		getLastChar();
+		getBackWards();
 	}
 
  	public String toString()
  	{
- 		return "";
+ 		return String.format(charbeg + "%n" + charend + "%n" + backword + "%n" + word);
+
 	}
 }
