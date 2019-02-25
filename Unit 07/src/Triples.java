@@ -60,7 +60,13 @@ public class Triples
 						String bnum = Integer.toString(j);
 						String cnum = Integer.toString(k);
 						String out = String.format(anum + " " + bnum + " " + cnum + "%n");
-						output = String.format(output + "%n" + out);
+						if (b>a) {
+							output = String.format(output + "%n" + out);
+						}
+						else {
+							output = output;
+						}
+	
 					}
 				}
 			}

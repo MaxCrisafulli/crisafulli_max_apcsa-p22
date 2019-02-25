@@ -11,6 +11,7 @@ public class TriplesRunner
    {
 	   Triples test = new Triples();
 	   Scanner keyin = new Scanner(System.in);
+	   System.out.print("Enter your maximum value :: ");
 	   int limit = keyin.nextInt();
 	   test.setNum(limit);
 	   System.out.println(test);

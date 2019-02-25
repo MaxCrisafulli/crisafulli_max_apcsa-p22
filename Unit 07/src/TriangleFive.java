@@ -8,6 +8,7 @@ public class TriangleFive
 {
    private char letter;
    private int amount;
+   private String output;
 
 	public TriangleFive()
 	{
@@ -30,32 +31,37 @@ public class TriangleFive
 	{
 		amount = amt;
 	}
-	
-	public void letterArranger() {
+
+	 public String letterArranger() {
 		
-			for (int i=amount; i>0; i--) {
+		for (int i=amount; i>0; i--) {
+			
 				
-					
-					for (int k = 0; k < i ; k++) { //increments the letters
+				for (int k = 0; k < i ; k++) {
+
 						
-							
-							for (int l = amount-k; l > 0; l--) { //prints the letters out the number of times
-								if (letter > 89) {
-									letter = (char)(letter-26);
-								}
+						for (int l = amount-k; l > 0; l--) {
+							int lettervalue = letter + k;
+							if (lettervalue > 90) {
+								System.out.print((char)(letter+k-26));
+							}
+							else {
 								System.out.print((char)(letter+k));
-								
-					}
+							}
+							
+						}
 						System.out.print(" ");
 				}
 				System.out.println();
 
-			}
-	}
+		}
+		return "";
+	} 
+	
+
 	
 	public String toString()
 	{
-		String output="";
-		return output;
+		return letterArranger();
 	}
 }
