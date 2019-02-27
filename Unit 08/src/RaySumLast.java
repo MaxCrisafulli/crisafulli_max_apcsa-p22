@@ -5,34 +5,31 @@
 
 public class RaySumLast
 {
-	private int sum;
-	private int[] tar;
+	private int[] arr;
 	
 	public RaySumLast() {
+		setArray(null);
 	}
 	
 	public RaySumLast(int[] ray) {
-		setArray(ray);
+		arr = ray;
 	}
 	
 	public void setArray(int[] ray) {
-		tar = ray;
-		sum = 0;
+		arr = ray;
 	}
 	
-	
-	public int getSum()
+	public int getSum(int [] ray)
 	{
-		int lastvalue = tar[tar.length-1];
-		for (int i = 0; i < tar.length; i++) {
-			if (tar[i] > tar[lastvalue]) {
-				sum += tar[i];
+		setArray(ray);
+		int sum = 0;
+		int lastvalue = 0;
+		lastvalue = arr[arr.length-1];
+		for (int i = 0; i < arr.length-1; i++) {
+			if (arr[i] > arr[lastvalue]) {
+				sum += arr[i];
 			}
 		}
 		return sum;
-	}
-	
-	public String toString() {
-		return Integer.toString(getSum());
 	}
 }

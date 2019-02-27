@@ -5,23 +5,37 @@
 
 public class RayDown
 {
-	//go() will return true if all numbers in numArray
-	//are in decreasing order [31,12,6,2,1]
-	public static boolean go(int[] numArray)
-	{
-		int length = numArray.length;
-		int before;
-		int after;
-		for (int i=0; i < length; i++) {
-			before = numArray[i];
-			after = numArray[i+1];	
-			if (Math.min(before,after) == after) {
-				i++;
+	private boolean result;
+	private int[] arr;
+	
+	public RayDown() {
+		setArray(null);
+	}
+	
+	public RayDown(int [] numArray) {
+		setArray(numArray);
+	}
+	
+	public void setArray(int [] numArray) {
+		arr = numArray;
+	}
+	
+	public boolean go(int[] numArray) {
+		setArray(numArray);
+		int length = arr.length;
+		for (int i = 0; i < (length-1); i++) {
+
+			if (arr[i] > arr[i+1]) {
+				result = true;
 			}
 			else {
+				result = false;
 				break;
 			}
 		}
-		return true;
-	}	
+		if (arr.length == 1) {
+			result = true;
+		}
+		return result;
+	}
 }
