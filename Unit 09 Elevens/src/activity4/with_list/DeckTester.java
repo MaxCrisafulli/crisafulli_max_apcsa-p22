@@ -1,4 +1,4 @@
-package activity4;
+package activity4.with_list;
 /**
  * This is a class that tests the Deck class.
  */
