@@ -1,4 +1,4 @@
-package activity4.with_list;
+package activity2;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -74,7 +74,7 @@ public class Deck {
 	}
 	
 	public void printCards() {   //prints out the cards in the deck for debugging purposes
-		for (int i = 0; i < size(); i++) {
+		for (int i = 0; i < cards.size(); i++) {
 			System.out.println(cards.get(i));
 		}
 		System.out.println();
@@ -87,16 +87,22 @@ public class Deck {
 	
 	
 	public void shuffle() {
-		for (int k = size() -1; k > 0; k--) {
-			int r = (int)Math.floor(Math.random() * size());
-			Card card1temp = cards.get(k);
-			Card card2temp = cards.get(r);
-			cards.set(k,card2temp);
-			cards.set(r,card1temp);
-		}
+		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
 	}
 
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Deals a card from this deck.
 	 * @return the card just dealt, or null if all the cards have been

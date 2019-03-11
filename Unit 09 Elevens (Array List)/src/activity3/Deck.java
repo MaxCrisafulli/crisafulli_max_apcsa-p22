@@ -109,9 +109,8 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		size = size-1;
-		Card removedcard = cards.get(size);
-		cards.remove(size);
+		Card removedcard = cards.get(0);
+		cards.remove(0);
 		return removedcard;
 	}
 	/**

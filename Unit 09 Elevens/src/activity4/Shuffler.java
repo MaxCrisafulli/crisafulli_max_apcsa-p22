@@ -1,4 +1,4 @@
-package activity4.with_list;
+package activity4;
 
 import java.lang.Math;
 /**

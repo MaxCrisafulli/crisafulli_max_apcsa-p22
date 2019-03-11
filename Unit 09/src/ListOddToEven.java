@@ -18,7 +18,7 @@ public class ListOddToEven
 				oddloc = i;
 				for (int j = ray.size()-1; j > i; j--) {
 					if (ray.get(j)%2 == 0) {
-						evenloc = ray.size()-j;
+						evenloc = ray.size()-1-j;
 					}
 				}
 			}

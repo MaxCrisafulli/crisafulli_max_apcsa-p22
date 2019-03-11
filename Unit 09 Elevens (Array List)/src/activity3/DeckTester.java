@@ -10,8 +10,7 @@ public class DeckTester {
 	 */
 	public static void main(String[] args) {
 		Deck test = new Deck(new String[] {"A", "B", "C", "D", "E"}, new String[] {"Giraffes", "Lions", "Zebras"}, new int[] {2,1,6,4,5});
-		test.printCards();
-
+		System.out.println(test);
 		
 		
 	}
