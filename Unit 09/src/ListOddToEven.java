@@ -11,8 +11,8 @@ public class ListOddToEven
 	public int go( List<Integer> ray )
 	{
 		int dist = 0;
-		int oddloc = 0;
-		int evenloc = 0;
+		int oddloc = -1;
+		int evenloc = -1;
 		for (int i = 0; i < ray.size(); i++) {
 			if (ray.get(i)%2 != 0) {
 				oddloc = i;
@@ -24,6 +24,9 @@ public class ListOddToEven
 			}
 		}
 		dist = oddloc - evenloc;
+		if (oddloc == -1 || evenloc == -1 ) {
+			dist = -1;
+		}
 		return dist;
 	}
 
