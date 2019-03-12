@@ -8,26 +8,48 @@ import java.util.List;
 
 public class ListOddToEven
 {
-	public int go( List<Integer> ray )
+	private int distance;
+	
+	public ListOddToEven () {
+		distance = 0;
+	}
+	
+	public int go(List<Integer> ray)
 	{
-		int dist = 0;
-		int oddloc = -1;
+		int size = ray.size();
 		int evenloc = -1;
-		for (int i = 0; i < ray.size(); i++) {
+		int oddloc = -1;
+		
+		for (int i = 0; i < size; i++) {
 			if (ray.get(i)%2 != 0) {
 				oddloc = i;
-				for (int j = ray.size()-1; j > i; j--) {
-					if (ray.get(j)%2 == 0) {
-						evenloc = ray.size()-1-j;
-					}
-				}
+				break;
+			}
+			else {
+				oddloc = -1;
 			}
 		}
-		dist = oddloc - evenloc;
-		if (oddloc == -1 || evenloc == -1 ) {
-			dist = -1;
+		
+		for (int j = size-1; j > oddloc; j--) {
+			if (ray.get(j)%2 == 0) {
+				evenloc = j;
+				break;
+			}
+			else {
+				evenloc = -1;
+			}
 		}
-		return dist;
+		
+		distance = evenloc - oddloc;
+		if (evenloc == -1 || oddloc == -1) {
+			distance = -1;
+		}
+		return distance;
+	}
+	
+	
+	public String toString() {
+		return Integer.toString(distance);
 	}
 
 }
