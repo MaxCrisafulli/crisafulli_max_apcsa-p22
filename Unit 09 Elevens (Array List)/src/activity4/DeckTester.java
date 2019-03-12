@@ -11,8 +11,9 @@ public class DeckTester {
 	public static void main(String[] args) {
 		Deck test = new Deck(new String[] {"A", "B", "C", "D", "E"}, new String[] {"Giraffes", "Lions", "Zebras"}, new int[] {2,1,6,4,5});
 		System.out.println(test);
-		test.shuffle();
+		test.deal();
 		System.out.println(test);
+		
 		
 	}
 }
