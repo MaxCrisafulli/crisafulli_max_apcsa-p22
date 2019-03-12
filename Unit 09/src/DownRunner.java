@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class DownRunner
 {
 	public static void main( String args[] )
+<<<<<<< HEAD
 	{		
 		ListDown test = new ListDown();
 		System.out.println(test.go(Arrays.asList(-99,1,2,3,4,5,6,7,8,9,10,12345)));
@@ -22,5 +23,10 @@ public class DownRunner
 		System.out.println(test.go(Arrays.asList(12,15,18,21,23,1000)));
 		System.out.println(test.go(Arrays.asList(250,19,17,15,13,11,10,9,6,3,2,1,-455)));
 		System.out.println(test.go(Arrays.asList(9,10,-8,10000,-5000,1000)));
+=======
+	{			
+		ListDown test = new ListDown();
+		test.go(Arrays.asList(10,9,8,7,6,5));
+>>>>>>> 8a667ff59c319abf2a3322fd2b720f39a24d63d6
 	}
 }
