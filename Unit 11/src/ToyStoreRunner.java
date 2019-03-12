@@ -4,6 +4,7 @@
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import static java.lang.System.*;
 
@@ -11,6 +12,7 @@ public class ToyStoreRunner
 {
 	public static void main( String args[] )
 	{
+		ToyStore test = new ToyStore(Arrays.asList(new Toy("sorry"), new Toy("sorry"), new Toy("gijoe"), new Toy("sorry"), new Toy("tetris")));
 
 	}
 }

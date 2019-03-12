@@ -35,13 +35,26 @@ public class ToyStore
   
   	public String getMostFrequentToy()
   	{
+  		Toy mft = null;
   		
+  		for (int i = 0; i < toyList.size(); i++) {
+  			
+  			Toy placetoy = toyList.get(i);
+  			int toyfreq = 0;
+  			int prevtoyfreq = 0;
+  			
+  			for (int j = 0; j < toyList.size(); j++) {
+  				if (placetoy.getName().equals(toyList.get(j).getName())) {
+  					toyfreq += 1;
+  				}
+  			}
+  			
+  			if (toyfreq > prevtoyfreq) {
+  				mft = placetoy;
+  			}
+  		}
   		
-  		
-  		
-  		
-  		
-  		return "";
+  		return mft.getName();
   	}  
   
   	public void sortToysByCount()
