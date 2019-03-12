@@ -18,15 +18,29 @@ public class ToyStore
 
 	public void loadToys( String toys )
 	{
+		Toy newToy = new Toy(toys);
+		toyList.add(newToy);
 	}
   
   	public Toy getThatToy( String nm )
   	{
-  		return null;
+  		Toy outputtoy = null;
+  		for (int i = 0; i < toyList.size(); i++) {
+  			if (toyList.get(i).getName().equals(nm)) {
+  				outputtoy = toyList.get(i);
+  			}
+  		}
+  		return outputtoy;
   	}
   
   	public String getMostFrequentToy()
   	{
+  		
+  		
+  		
+  		
+  		
+  		
   		return "";
   	}  
   
