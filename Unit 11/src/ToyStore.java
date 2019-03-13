@@ -14,6 +14,7 @@ public class ToyStore
 
 	public ToyStore()
 	{
+		toyList = null;
 	}
 
 	public void loadToys( String toys )

@@ -12,7 +12,15 @@ public class ToyStoreRunner
 {
 	public static void main( String args[] )
 	{
-		ToyStore test = new ToyStore(Arrays.asList(new Toy("sorry"), new Toy("sorry"), new Toy("gijoe"), new Toy("sorry"), new Toy("tetris")));
+		ToyStore test = new ToyStore();
+		test.loadToys("sorry");
+		test.loadToys("gijoe");
+		test.loadToys("gijoe");
+		test.loadToys("tetris");
+		test.loadToys("gijoe");
+		test.loadToys("tetris");
+		test.loadToys("gijoe");
+		System.out.println(test.getMostFrequentToy());
 
 	}
 }
