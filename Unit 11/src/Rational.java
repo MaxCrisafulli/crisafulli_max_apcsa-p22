@@ -44,21 +44,22 @@ class Rational implements Comparable<Rational>
 		
 		newnum = ((num * other.getDen()) + (other.getNum() * den));
 		newden = (den * other.getDen());
-		num = newnum;
-		den = newden;
+		setNum(newnum);
+		setDen(newden);
 		reduce();
 		
 	}
 
 	private void reduce()
 	{
-		num = num/gcd(num,den);
-		den = den/gcd(num,den);
+		int placenum = num;
+		int placeden = den;
+		num = placenum/gcd(placenum,placeden);
+		den = placeden/gcd(placenum,placeden);
 	}
 
 	private int gcd(int numOne, int numTwo)
 	{
-	        // Everything divides 0  
 	        if (numOne == 0) {
 	          return numTwo; 
 	        }
@@ -66,12 +67,10 @@ class Rational implements Comparable<Rational>
 	          return numOne; 
 	        }
 	       
-	        // base case 
 	        if (numOne == numTwo) {
 	            return numOne; 
 	        }
 	       
-	        // a is greater 
 	        if (numOne > numTwo) {
 	            return gcd(numOne-numTwo, numTwo);
 	        }
@@ -99,6 +98,8 @@ class Rational implements Comparable<Rational>
 	
 	public boolean equals(Rational obj)
 	{
+		reduce();
+		obj.reduce();
 		if (num == obj.getNum() && den == obj.getDen()) {
 			return true;
 		}
@@ -107,10 +108,21 @@ class Rational implements Comparable<Rational>
 
 	public int compareTo(Rational other)
 	{
-		if ((num/den) > other.getNum()/other.getDen()) {
+		reduce();
+		other.reduce();
+		double othernum = other.getNum();
+		double otherden = other.getDen();
+		double thisnum = getNum();
+		double thisden = getDen();
+		double valuethis = (thisnum/thisden);
+		double othervalue = (othernum/otherden);
+		
+		if (valuethis > othervalue) {
 			return 1;
 		}
-		return -1;
+		else {
+			return -1;
+		}
 	}
 
 	public String toString() 
