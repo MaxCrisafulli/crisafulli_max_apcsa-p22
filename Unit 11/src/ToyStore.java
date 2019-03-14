@@ -5,22 +5,32 @@
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import static java.lang.System.*;
 
 public class ToyStore
 {
-	private ArrayList<Toy> toyList;
+	private ArrayList<Toy> toyList = new ArrayList<Toy>();
 
 	public ToyStore()
 	{
-		toyList = null;
 	}
 
 	public void loadToys( String toys )
 	{
-		Toy newToy = new Toy(toys);
-		toyList.add(newToy);
+		int count = 0;
+		for (int i = 0; i < toyList.size(); i++) {
+			if (toyList.get(i).getName().equals(toys)) {
+				toyList.get(i).setCount((toyList.get(i).getCount()) + 1);
+				count++;
+			}
+		}
+		
+		if (count == 0) {
+			Toy newToy = new Toy(toys);
+			toyList.add(newToy);
+		}
 	}
   
   	public Toy getThatToy( String nm )
@@ -36,34 +46,29 @@ public class ToyStore
   
   	public String getMostFrequentToy()
   	{
-  		Toy mft = null;
+  		String name = "";
+  		int count = 0;
   		
-  		for (int i = 0; i < toyList.size(); i++) {
-  			
-  			Toy placetoy = toyList.get(i);
-  			int toyfreq = 0;
-  			int prevtoyfreq = 0;
-  			
-  			for (int j = 0; j < toyList.size(); j++) {
-  				if (placetoy.getName().equals(toyList.get(j).getName())) {
-  					toyfreq += 1;
-  				}
-  			}
-  			
-  			if (toyfreq > prevtoyfreq) {
-  				mft = placetoy;
+  		for (int j = 0 ; j < toyList.size(); j++) {
+  			if (toyList.get(j).getCount() > count) {
+  				count = toyList.get(j).getCount();
+  				name = toyList.get(j).getName();
   			}
   		}
-  		
-  		return mft.getName();
+  		return name;
   	}  
   
-  	public void sortToysByCount()
-  	{
-  	}  
-  	  
 	public String toString()
 	{
-	   return "";
+		String output = "[]\n[";
+		
+		
+		for (int i = 0; i < toyList.size(); i++) {
+			output = output + toyList.get(i).getName() + " " + toyList.get(i).getCount() + " ";
+		}
+		
+		output = output +  "]\nmax == " + getMostFrequentToy();
+		
+		return output;
 	}
 }
