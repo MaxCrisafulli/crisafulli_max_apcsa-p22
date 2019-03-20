@@ -33,7 +33,7 @@ public class WordRunner
 			int bigwindex = 0;
 			for (int l = 0; l < list.size(); l++) { //finds biggest word
 				if (list.get(l).compareTo(bigw) == 0) { // if word lengths are same 
-					if (list.get(l).getWord().compareTo(bigw.getWord()) > 0) {
+					if (list.get(l).getWord().compareTo(bigw.getWord()) > 0) { //checks if there it is alphabetically greatest
 						biggestlength = list.get(l).getLength();
 						bigw = list.get(l);
 						bigwindex = l;
