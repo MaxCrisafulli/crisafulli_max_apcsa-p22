@@ -15,7 +15,31 @@ public class MatrixCount1
 
     public static int count( int val  )
     {
-		//add code
-		return 0;
+    	int count = 0;
+    	for (int[] row : m) {
+    		for(int num : row ) {
+    			if (num == val) {
+    				count += 1;
+    			}
+    		}
+    	}
+		return count;
+    }
+    
+    public String toString() {
+    	String output = "Matrix values \n";
+    	for (int[] row : m) {
+    		for (int num : row) {
+    			output += num + "  ";
+    		}
+    		output += " \n";
+    	}
+    	output += "\n";
+    	
+    	output += "The 7 count is :: " + count(7) + "\n";
+    	output += "The 8 count is :: " + count(8) + "\n";
+    	output += "The 6 count is :: " + count(6) + "\n";
+    	output += "The 21 count is :: " + count(21) + "\n";
+    	return output;
     }
 }

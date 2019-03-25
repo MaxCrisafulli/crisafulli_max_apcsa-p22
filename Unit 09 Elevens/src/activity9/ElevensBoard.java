@@ -25,15 +25,6 @@ public class ElevensBoard extends Board {
 		{"spades", "hearts", "diamonds", "clubs"};
 
 	/**
-	 * The cards on this board.
-	 */
-	private Card[] cards;
-
-	/**
-	 * The deck of cards being used to play the current game.
-	 */
-	private Deck deck;
-	/**
 	 * 
 	 * The values of the cards for this game to be sent to the deck.
 	 */
@@ -80,8 +71,8 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		ArrayList<Integer> indices = new ArrayList<Integer>(cards.length);
-		for (int i = 0; i < cards.length; i++) {
+		ArrayList<Integer> indices = new ArrayList<Integer>();
+		for (int i = 0; i < size(); i++) {
 			indices.add(i);
 		}
 		
@@ -102,7 +93,7 @@ public class ElevensBoard extends Board {
 	private boolean containsPairSum11(List<Integer> selectedCards) {
 		for (int i = 0; i < selectedCards.size(); i++) {
 			for (int j = 0; j < selectedCards.size(); j++) {
-				if (cards[selectedCards.get(j)].pointValue() + cards[selectedCards.get(i)].pointValue() == 11) {
+				if (cardAt(selectedCards.get(j)).pointValue() + cardAt(selectedCards.get(i)).pointValue() == 11) {
 					return true;
 				}
 			}
@@ -122,11 +113,11 @@ public class ElevensBoard extends Board {
 	private boolean containsJQK(List<Integer> selectedCards) {
 		int count = 0;
 		for (int i = 0; i < selectedCards.size(); i++) {
-			if (cards[selectedCards.get(i)].rank().equals("jack")) {
+			if (cardAt(selectedCards.get(i)).rank().equals("jack")) {
 				for (int j = 0; j < selectedCards.size(); j++) {
-					if (cards[selectedCards.get(j)].rank().equals("queen")) {
+					if (cardAt(selectedCards.get(j)).rank().equals("queen")) {
 						for (int k = 0; k < selectedCards.size(); k++) {
-							if (cards[selectedCards.get(k)].rank().equals("king")) {
+							if (cardAt(selectedCards.get(k)).rank().equals("king")) {
 								count++;
 							}
 						}

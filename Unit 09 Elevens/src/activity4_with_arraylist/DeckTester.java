@@ -1,4 +1,7 @@
 package activity4_with_arraylist;
+
+import activity9.Deck;
+
 /**
  * This is a class that tests the Deck class.
  */
@@ -10,10 +13,7 @@ public class DeckTester {
 	 */
 	public static void main(String[] args) {
 		Deck test = new Deck(new String[] {"A", "B", "C", "D", "E"}, new String[] {"Giraffes", "Lions", "Zebras"}, new int[] {2,1,6,4,5});
-		test.printCards();
-		test.shuffle();
-		test.printCards();
-		test.shuffle();
-		test.printCards();
+		System.out.println(test);
+		test.deal();
 	}
 }

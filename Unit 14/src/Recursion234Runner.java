@@ -10,6 +10,5 @@ public class Recursion234Runner
 	{
 		System.out.println(RecursionFunOne.countOddDigits(4532));
 
-		//add more test cases
 	}
 }
