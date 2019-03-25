@@ -9,6 +9,13 @@ public class Grid
    //load vals into the rows x cols grid randomly
 	public Grid(int rows, int cols, String[] vals)
 	{
+		grid = new String[rows][cols];
+		
+		for (String[] row : grid) {
+			for (String str : row) {
+				str = vals[(int)Math.floor(Math.random() * (vals.length))];
+			}
+		}     
 	}
 
 	//find out which of the vals occurs the most
@@ -27,6 +34,12 @@ public class Grid
 	public String toString()
 	{
 		String output="";
+		for (String[] row : grid) {
+			for (String str : row) {
+				output += str + " ";
+			}
+			output += "\n";
+		}  
 		return output;
 	}
 }

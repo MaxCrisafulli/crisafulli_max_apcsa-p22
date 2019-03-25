@@ -6,9 +6,30 @@ import java.util.*;
 
 public class TotalRow
 {
-    public static List<Integer> getRowTotals( int[][] m )
+	private int[][] m;
+
+	public TotalRow(int[][] matrix) {
+		m = matrix;
+	}
+
+	
+    public List<Integer> getRowTotals()
     {
-    	//add code here
-		return null;
+    	ArrayList<Integer> output = new ArrayList<Integer>();
+    	for (int[] row : m) {
+    		int sum = 0;
+    		for(int num : row ) {
+    			sum += num;
+    		}
+    		output.add(sum);
+    	}
+		return output;
     }
-}
+    
+    public String toString() {
+    	String wordout = "";
+    	wordout += "Row total are :: ";
+    	wordout += getRowTotals();
+    	return wordout;
+    }
+ }

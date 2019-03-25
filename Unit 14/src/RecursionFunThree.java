@@ -18,8 +18,27 @@ public class RecursionFunThree
 	 * 777337777  would return 2
 	 * the solution to this problem must use recursion
 	 */
-	public static int luckyThrees( long number )
-	{
-		return 0;
+	
+	public static int luckyThrees(long number) {
+		int firstdigthree = 0;
+	    if (number == 0) { 
+	    return 0;
+	    }
+	    
+	    if(number == 3) {
+	    	firstdigthree = 1;
+	    }
+	    
+	    long lastdig = number % 10;   
+	    long firstdigs = number / 10; 
+	    
+	    if (lastdig == 3 && firstdigthree == 1) {  
+	        return 0 + luckyThrees(firstdigs); 
+	    } else if (lastdig == 3) {
+	    	return 1 + luckyThrees(firstdigs);
+	    	
+	    } else {
+	        return 0 + luckyThrees(firstdigs); 
+	    }
 	}
 }
