@@ -107,8 +107,12 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		size = size -1;
-		return cards.get(size);
+		if (isEmpty() == true) {
+			return null;
+		}
+		size = size - 1;
+		Card c = cards.get(size);
+		return c;
 	}
 	/**
 	 * Generates and returns a string representation of this deck.
