@@ -75,8 +75,8 @@ public class ElevensBoard extends Board {
 		for (int i = 0; i < size(); i++) {
 			indices.add(i);
 		}
-		
-		if (containsPairSum11(indices) == true || containsJQK(indices) == true) {
+		List<Integer> cIndexes = cardIndexes();
+		if (containsPairSum11(cIndexes) == true || containsJQK(cIndexes) == true) {
 			return true;
 		}
 		return false;

@@ -107,7 +107,7 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		size = size-1;
+		size = size -1;
 		return cards.get(size);
 	}
 	/**
