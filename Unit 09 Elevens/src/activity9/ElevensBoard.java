@@ -71,15 +71,13 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		ArrayList<Integer> indices = new ArrayList<Integer>();
-		for (int i = 0; i < size(); i++) {
-			indices.add(i);
-		}
 		List<Integer> cIndexes = cardIndexes();
 		if (containsPairSum11(cIndexes) == true || containsJQK(cIndexes) == true) {
 			return true;
 		}
+		else {
 		return false;
+		}
 	}
 
 	/**

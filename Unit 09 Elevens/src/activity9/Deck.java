@@ -31,19 +31,20 @@ public class Deck {
 	 * @param values is an array containing all of the card point values.
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
-		ArrayList<Card> outputlist = new ArrayList<Card>();
+		cards = new ArrayList<Card>();
 		for (int i = 0; i < ranks.length; i++) {
 			String inputrank = ranks[i];
 			int inputvalue = values[i];
 			
 			for (int j = 0; j < suits.length; j++) {
 				String inputsuit = suits[j];
-				outputlist.add(new Card(inputrank, inputsuit, inputvalue));
+				cards.add(new Card(inputrank, inputsuit, inputvalue));
 			}
 			
 		}
 		
-		cards = outputlist;
+		size = cards.size();
+		shuffle();
 	}
 
 
@@ -65,7 +66,6 @@ public class Deck {
 	 * @return the number of undealt cards in this deck.
 	 */
 	public int size() {
-		size = cards.size();
 		return size;
 	}
 	
@@ -73,16 +73,6 @@ public class Deck {
 		return cards.get(index);
 	}
 	
-	public void printCards() {   //prints out the cards in the deck for debugging purposes
-		if (isEmpty() == true) {
-			System.out.println("Deck is empty");
-		}
-		for (int i = 0; i < cards.size(); i++) {
-			System.out.println(cards.get(i));
-		}
-		System.out.println();
-	}
-
 	/**
 	 * Randomly permute the given collection of cards
 	 * and reset the size to represent the entire deck.
@@ -90,14 +80,15 @@ public class Deck {
 	
 	
 	public void shuffle() {
-		for (int i = size()-1; i > 0; i--) {
-			int random = (int)Math.floor(size() * Math.random());
+		for (int i = cards.size()-1; i > 0; i--) {
+			int random = (int)Math.floor(cards.size() * Math.random());
 			
 			Card card1temp = cards.get(i);
 			Card card2temp = cards.get(random);
 			cards.set(i,  card2temp);
 			cards.set(random,  card1temp);
 		}
+		size = cards.size();
 	}
 
 
@@ -107,13 +98,14 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		if (isEmpty() == true) {
+		if (isEmpty()) {
 			return null;
 		}
-		size = size - 1;
+		size --;
 		Card c = cards.get(size);
 		return c;
 	}
+
 	/**
 	 * Generates and returns a string representation of this deck.
 	 * @return a string representation of this deck.
