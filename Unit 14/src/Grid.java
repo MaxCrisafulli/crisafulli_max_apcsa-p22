@@ -6,6 +6,9 @@ public class Grid
 {
    private String[][] grid;
    private int valength;
+   private String[]valsarr;
+   private int[] countarr;
+   private String mostvalue;
 
    //load vals into the rows x cols grid randomly
 	public Grid(int rows, int cols, String[] vals)
@@ -23,19 +26,27 @@ public class Grid
 	public String findMax(String[] vals)
 	{
 		int[] count = new int[valength];
-		int bigindex = 0;
-		String mostval = "x";
+		
 		for (int i = 0; i < valength; i++) {
 			count[i] = countVals(vals[i]);
 		}
 		
+		
+		String mostval = "";
+		int index = 0;
+		int biggestcount = 0;
+		
 		for (int j = 0; j < count.length; j++) {
-			int largestvalue = count[j];
-			if (count[j] > largestvalue) {
-				bigindex = j;
-				mostval = vals[j];
+			if (count[j] > biggestcount) {
+				biggestcount = count[j];
+				index = j;
 			}
 		}
+		
+		mostval = vals[index];
+		countarr = count;
+		valsarr = vals;
+		mostvalue = mostval;
 		return mostval;
 	}
 
@@ -63,6 +74,17 @@ public class Grid
 			}
 			output += "\n";
 		} 
+		
+		output += "\n";
+		
+		for (int i = 0; i < countarr.length; i++) { //print out for debugging
+			output += valsarr[i] + " count is " +  countarr[i] + "\n";
+		}
+		
+		output += "\n";
+		
+		output += mostvalue + " occurs the most";
+		
 		return output;
 	}
 }
