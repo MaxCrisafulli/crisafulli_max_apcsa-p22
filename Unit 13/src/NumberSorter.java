@@ -32,19 +32,18 @@ public class NumberSorter
 			sorted[i] = newNumber;
 		}
 		
-		int counter = 0;
-		for (int i = 0; i < sorted.length; i++) {  //orders the digits
-			int smallestnum = sorted[sorted.length-1];
-			int smallestindex = sorted.length-1;
-			if (sorted[i] < smallestnum) {
-				smallestindex = i;
-				smallestnum = sorted[i]; 
-				int temp = sorted[counter];
-				sorted[counter] = smallestnum;
-				sorted[i] = temp;
-				counter++;
-			}
-		}
+        for (int i = 0; i < sorted.length; i++) 
+        {
+            for (int j = i + 1; j < sorted.length; j++) 
+            {
+                if (sorted[i] > sorted[j]) 
+                {
+                	int  temp = sorted[i];
+                    sorted[i] = sorted[j];
+                    sorted[j] = temp;
+                }
+            }
+        }
 		return sorted;
 	}
 }
