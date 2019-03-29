@@ -13,9 +13,10 @@ public class NumberShifterRunner
 	public static void main( String args[] ) throws IOException
 	{
 		NumberShifter test = new NumberShifter();
-		int[] array = test.makeLucky7Array(50);
-		test.shiftEm(array);
-		System.out.println(test);
+		int[] array = test.makeLucky7Array(20);
+		System.out.println("Initial Array is " + Arrays.toString(array));
+		System.out.println("Shifed Array is " + Arrays.toString((test.shiftEm(array))));
+				
 	}
 }
 
