@@ -9,12 +9,12 @@ public class WordSearchRunner
 {
     public static void main(String[] args) throws Exception
     {
-    	  WordSearch ms = new WordSearch(8,"APPLEXYPXLHJKEEDEGGLLXXCGFPDGOGNMYNTAHUUPUQDGBTSBTHIGHMSILKXLTHIS");
+    	  WordSearch ms = new WordSearch(8,"APPLEXYPXLHJKEEDEGGLLXXCGFPDGOGNMYNTAHUUPUQDGBTSBTHIGHMSILKXLTHISAPPLE");
     	  String[] words = "APPLE AXE APEX CAT HEX EGG HAT COMPUTER GUM THIS TUG THIGH".split(" ");
     	  System.out.println( ms );
     	  for( String s : words )
     	  {
-    	  	  if( ms.isFound( s) )
+    	  	  if( ms.isFound(s) )
     	  	  {
     	  	  	  System.out.println( s + " was found in the matrix.");
     	  	  }
