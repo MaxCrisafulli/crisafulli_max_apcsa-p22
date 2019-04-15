@@ -66,7 +66,7 @@ public class Ball extends Block
 	    
    public void moveAndDraw(Graphics window)
    {
-	  draw(window,Color.RED);
+	  draw(window,Color.WHITE);
       setX(getX()+xSpeed);
       setY(getY()+ySpeed);
       draw(window);
