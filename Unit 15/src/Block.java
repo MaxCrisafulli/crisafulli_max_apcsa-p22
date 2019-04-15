@@ -20,7 +20,7 @@ public class Block implements Locatable
 		setY(0);
 		setWidth(10);
 		setHeight(10);
-		setColor(Color.WHITE);
+		setColor(Color.BLACK);
 	}
 
 	//add other Block constructors - x , y , width, height, color
@@ -30,7 +30,7 @@ public class Block implements Locatable
 		setY(y);
 		setWidth(10);
 		setHeight(10);
-		setColor(Color.WHITE);
+		setColor(Color.BLACK);
 
 	}
 	
@@ -39,7 +39,7 @@ public class Block implements Locatable
 		setY(y);
 		setWidth(wd);
 		setHeight(10);
-		setColor(Color.WHITE);
+		setColor(Color.BLACK);
 	}
 	
 	public Block(int x, int y, int wd, int ht) {
@@ -47,7 +47,7 @@ public class Block implements Locatable
 		setY(y);
 		setWidth(wd);
 		setHeight(ht);
-		setColor(Color.WHITE);
+		setColor(Color.BLACK);
 
 	}
 	
@@ -120,7 +120,6 @@ public class Block implements Locatable
    {
 	   window.setColor(col);
 	   window.fillRect(getX(), getY(), getWidth(), getHeight());
-
    }
    
 	public boolean equals(Block obj)

@@ -24,11 +24,12 @@ public class Paddle extends Block
 		speed = 5;
    }
    
-   public Paddle(int x, int y, int wd)
+   public Paddle(int x, int y, int spd)
    {
-		super(x,y,wd);
-		speed = 5;
+		super(x,y);
+		speed = spd;
    }
+   
    
    public Paddle(int x, int y, int wd, int ht)
    {
@@ -56,32 +57,22 @@ public class Paddle extends Block
 
    public void moveUpAndDraw(Graphics window)
    {
+	   draw(window,Color.WHITE);
+	   this.setY(this.getY()-getSpeed());
 	   draw(window);
-	   this.setY(this.getY()+1);
    }
 
    public void moveDownAndDraw(Graphics window)
    {
+	   draw(window,Color.WHITE);
+	   this.setY(this.getY()+getSpeed());
 	   draw(window);
-	   this.setY(this.getY()-1);
    }
 
    //add get methods
-   public int getXSpeed() {
-	   return 5;
-   }
-   
-   public int getYSpeed() {
-	   return 6;
-   }
-   
    public int getSpeed() {
 	   return speed;
    }
-   
-   
-   
-   
    
    //add a toString() method
    public String toString() {
