@@ -28,9 +28,6 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		ball = new Ball(10,100,10,10,Color.BLUE,2,1);
 		leftPaddle = new Paddle(20,200,10,40,Color.ORANGE,2);
 		rightPaddle = new Paddle(760,200,10,40,Color.ORANGE,2);
-
-
-
 		keys = new boolean[4];
 
     
@@ -66,7 +63,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 
 		//see if ball hits left wall or right wall
-		if(!(ball.getX()>=10 && ball.getX()<=780))
+		if(!(ball.getX()>=10 && ball.getX()<=770))
 		{
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
@@ -74,38 +71,89 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 		
 		//see if the ball hits the top or bottom wall 
-
-
-
+		if(!(ball.getY()>=10 && ball.getY()<=550))
+		{
+			ball.setXSpeed(ball.getXSpeed());
+			ball.setYSpeed(-ball.getYSpeed());
+		}
 
 		//see if the ball hits the left paddle
 		
+		if (ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() + Math.abs(ball.getXSpeed()) && 
+		(ball.getY() > leftPaddle.getY() && ball.getY() >= leftPaddle.getY() + leftPaddle.getHeight() ||
+		ball.getY() + ball.getHeight() >= leftPaddle.getY() &&
+		ball.getY() + ball.getHeight() < leftPaddle.getY() + leftPaddle.getHeight())) {
+
+			if (ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() - Math.abs(ball.getXSpeed())) {
+				ball.setY(-ball.getYSpeed());
+			}
+			else {
+				ball.setX(-ball.getXSpeed());
+			}
 		
+		}
 		
+
 		//see if the ball hits the right paddle
 		
 		
+		//PROBLEM WITH THE RIGHT PADDLE
+		//FIX IMMEDIATELY
+		
+	/*	if (ball.getX() <= rightPaddle.getX() + rightPaddle.getWidth() + Math.abs(ball.getXSpeed()) && 
+		(ball.getY() > rightPaddle.getY() && ball.getY() >= rightPaddle.getY() + rightPaddle.getHeight() ||
+		ball.getY() + ball.getHeight() >= rightPaddle.getY() &&
+		ball.getY() + ball.getHeight() < rightPaddle.getY() + rightPaddle.getHeight())) {
+
+			if (ball.getX() <= rightPaddle.getX() + rightPaddle.getWidth() - Math.abs(ball.getXSpeed())) {
+				ball.setY(-ball.getYSpeed());
+			}
+			else {
+				ball.setX(-ball.getXSpeed());
+			}
+		
+		}*/
 		
 
 
 		//see if the paddles need to be moved
 
-		//if keys have bene pressed move them as needed, 01 are left, 23 are right
+		if(keys[0] == true)
+		{
+			leftPaddle.moveUpAndDraw(window);
+		} 
+		if(keys[1] == true)
+		{
+			leftPaddle.moveDownAndDraw(window);
 
-
-
-
-
-
-
-
-
-
-
-
-
+		}
+		if(keys[2] == true)
+		{
+			rightPaddle.moveUpAndDraw(window);
+		}
+		if(keys[3] == true)
+		{
+			rightPaddle.moveDownAndDraw(window);
+		}
 		
+
 		twoDGraph.drawImage(back, null, 0, 0);
+		
+		
+		
+		
+		
+		
+		
+		//draw score and string
+		graphToBack.setColor(Color.BLACK);
+		graphToBack.drawString("X",770,550);
+		graphToBack.drawString("X",10,10);
+		graphToBack.drawString("X",10,550);
+		graphToBack.drawString("X",770,10);
+		
+		
+		
 	}
 
 	public void keyPressed(KeyEvent e)
