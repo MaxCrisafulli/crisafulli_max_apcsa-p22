@@ -3,6 +3,7 @@
 //Name -
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
@@ -65,6 +66,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		leftPaddle.draw(graphToBack);
 		rightPaddle.draw(graphToBack);
 		graphToBack.setColor(Color.WHITE);
+		graphToBack.setFont(new Font("Helvetica", Font.PLAIN, 15));
 		graphToBack.drawString(Integer.toString(lscore),15,25);
 		graphToBack.drawString(Integer.toString(rscore),765,25);
 
@@ -72,13 +74,11 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		//RIGHT WALL
 		
 		if (didCollideRight()) {
-			//ball.setYSpeed(ball.getYSpeed());
-			//ball.setXSpeed(-ball.getXSpeed());
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
 			lscore++;
 			graphToBack.setColor(Color.BLACK);
-			graphToBack.fillRect(0,10,30,30);
+			graphToBack.fillRect(0,0,50,50);
 			graphToBack.setColor(Color.WHITE);
 			graphToBack.drawString(Integer.toString(lscore),15,25);
 			graphToBack.setColor(Color.BLACK);
@@ -90,13 +90,11 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		
 		//LEFT WALL
 		if (didCollideLeft()) {
-			//ball.setYSpeed(ball.getYSpeed());
-			//ball.setXSpeed(-ball.getXSpeed());
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
 			rscore++;
 			graphToBack.setColor(Color.BLACK);
-			graphToBack.fillRect(750,10,30,30);
+			graphToBack.fillRect(750,0,50,50);
 			graphToBack.setColor(Color.WHITE);
 			graphToBack.drawString(Integer.toString(rscore),765,25);
 			graphToBack.setColor(Color.BLACK);
