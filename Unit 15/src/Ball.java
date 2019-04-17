@@ -66,7 +66,7 @@ public class Ball extends Block
 	    
    public void moveAndDraw(Graphics window)
    {
-	  draw(window,Color.WHITE);
+	  draw(window,Color.BLACK);
       setX(getX()+xSpeed);
       setY(getY()+ySpeed);
       draw(window);
@@ -98,11 +98,6 @@ public class Ball extends Block
 		 output += super.toString() + " " + getXSpeed() + " " +  getYSpeed();
 		 return output;
 	}
-	
-	
-	
-	
-	
-	
-	
+		
+
 }

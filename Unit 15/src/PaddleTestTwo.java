@@ -86,10 +86,10 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 	{
 		switch(toUpperCase(e.getKeyChar()))
 		{
-			case 'W' : keys[0]=true; break;
-			case 'Z' : keys[1]=true; break;
-			case 'I' : keys[2]=true; break;
-			case 'M' : keys[3]=true; break;
+			case 'W' : keys[1]=true; break;
+			case 'Z' : keys[0]=true; break;
+			case 'I' : keys[3]=true; break;
+			case 'M' : keys[2]=true; break;
 		}
 	}
 
@@ -97,10 +97,10 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 	{
 		switch(toUpperCase(e.getKeyChar()))
 		{
-			case 'W' : keys[0]=false; break;
-			case 'Z' : keys[1]=false; break;
-			case 'I' : keys[2]=false; break;
-			case 'M' : keys[3]=false; break;
+			case 'W' : keys[1]=false; break;
+			case 'Z' : keys[0]=false; break;
+			case 'I' : keys[3]=false; break;
+			case 'M' : keys[2]=false; break;
 		}
 	}
 
