@@ -27,7 +27,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	public Pong()
 	{
 		//set up all variables related to the game
-		ball = new Ball(350,250,10,10,Color.WHITE,(int)Math.floor(3*Math.random())-3,(int)Math.floor(3*Math.random())-3);
+		ball = new Ball(350,250,10,10,Color.WHITE,rand(), rand());
 		leftPaddle = new Paddle(20,200,10,40,Color.WHITE,2);
 		rightPaddle = new Paddle(760,200,10,40,Color.WHITE,2);
 		keys = new boolean[4];
@@ -84,7 +84,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			graphToBack.setColor(Color.BLACK);
 			graphToBack.fillRect(ball.getX(),ball.getY(),10,10);
 			ball = null;
-			ball = new Ball(350,250,10,10,Color.WHITE,(int)Math.floor(3*Math.random())-3,(int)Math.floor(3*Math.random())-3);
+			ball = new Ball(350,250,10,10,Color.WHITE,rand(), rand());
 		}
 		
 		
@@ -100,7 +100,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			graphToBack.setColor(Color.BLACK);
 			graphToBack.fillRect(ball.getX(),ball.getY(),10,10);
 			ball = null;
-			ball = new Ball(350,250,10,10,Color.WHITE,(int)Math.floor(3*Math.random())-3,(int)Math.floor(3*Math.random())-3);
+			ball = new Ball(350,250,10,10,Color.WHITE,rand(), rand());
 		}
 		
 		
@@ -235,5 +235,19 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	   else
 		   return false;
    }
+   
+   //RANDOM SPEED GENERATOR FOR -3 TO 3 EXCLUDING -1, 0, AND 1
+   
+   public int rand() {
+	   int output = (int)(Math.random()*7) -3;	
+	   if (output >= -1 && output <= 1) {
+		   return 2;
+	   }
+	   else {
+		   return output;
+	   }
+   }
+   
+   
 
 }
