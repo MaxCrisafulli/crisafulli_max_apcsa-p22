@@ -3,6 +3,7 @@
 //Name -
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
@@ -20,18 +21,21 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	private Paddle rightPaddle;
 	private boolean[] keys;
 	private BufferedImage back;
+	private int lscore, rscore;
 
 
 	public Pong()
 	{
 		//set up all variables related to the game
-		ball = new Ball(10,100,10,10,Color.BLUE,2,1);
-		leftPaddle = new Paddle(20,200,10,40,Color.ORANGE,2);
-		rightPaddle = new Paddle(760,200,10,40,Color.ORANGE,2);
+		ball = new Ball(350,250,10,10,Color.WHITE,rand(), rand());
+		leftPaddle = new Paddle(20,200,10,40,Color.WHITE,2);
+		rightPaddle = new Paddle(760,200,10,40,Color.WHITE,2);
 		keys = new boolean[4];
+		lscore = 0;
+		rscore = 0;
 
     
-    	setBackground(Color.WHITE);
+    	setBackground(Color.BLACK);
 		setVisible(true);
 		
 		new Thread(this).start();
@@ -44,6 +48,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
    public void paint(Graphics window)
    {
+	   
 		//set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D)window;
 
@@ -60,110 +65,103 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		ball.moveAndDraw(graphToBack);
 		leftPaddle.draw(graphToBack);
 		rightPaddle.draw(graphToBack);
+		graphToBack.setColor(Color.WHITE);
+		graphToBack.setFont(new Font("Helvetica", Font.PLAIN, 15));
+		graphToBack.drawString(Integer.toString(lscore),15,25);
+		graphToBack.drawString(Integer.toString(rscore),765,25);
 
 
-		//see if ball hits left wall or right wall
-		if(!(ball.getX()>=10 && ball.getX()<=770))
-		{
+		//RIGHT WALL
+		
+		if (didCollideRight()) {
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
+			lscore++;
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(0,0,50,50);
+			graphToBack.setColor(Color.WHITE);
+			graphToBack.drawString(Integer.toString(lscore),15,25);
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(ball.getX(),ball.getY(),10,10);
+			ball = null;
+			ball = new Ball(350,250,10,10,Color.WHITE,rand(), rand());
 		}
-
 		
-		//see if the ball hits the top or bottom wall 
-		if(!(ball.getY()>=10 && ball.getY()<=550))
-		{
-			ball.setXSpeed(ball.getXSpeed());
+		
+		//LEFT WALL
+		if (didCollideLeft()) {
+			ball.setXSpeed(0);
+			ball.setYSpeed(0);
+			rscore++;
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(750,0,50,50);
+			graphToBack.setColor(Color.WHITE);
+			graphToBack.drawString(Integer.toString(rscore),765,25);
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(ball.getX(),ball.getY(),10,10);
+			ball = null;
+			ball = new Ball(350,250,10,10,Color.WHITE,rand(), rand());
+		}
+		
+		
+		//TOP OR BOTTOM WALL
+		
+		if (didCollideTop() || didCollideBottom()) {
 			ball.setYSpeed(-ball.getYSpeed());
 		}
 
-		//see if the ball hits the left paddle
+		//LEFT PADDLE
 		
-		if (ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() + Math.abs(ball.getXSpeed()) && 
-		(ball.getY() > leftPaddle.getY() && ball.getY() >= leftPaddle.getY() + leftPaddle.getHeight() ||
-		ball.getY() + ball.getHeight() >= leftPaddle.getY() &&
-		ball.getY() + ball.getHeight() < leftPaddle.getY() + leftPaddle.getHeight())) {
-
-			if (ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() - Math.abs(ball.getXSpeed())) {
-				ball.setY(-ball.getYSpeed());
-			}
-			else {
-				ball.setX(-ball.getXSpeed());
-			}
-		
+		if (didLCollidePaddle(leftPaddle)) {
+			ball.setYSpeed(ball.getYSpeed());
+			ball.setXSpeed(-ball.getXSpeed());
 		}
 		
-
-		//see if the ball hits the right paddle
+		//RIGHT PADDLE
 		
+		if (didRCollidePaddle(rightPaddle)) {
+			ball.setYSpeed(ball.getYSpeed());
+			ball.setXSpeed(-ball.getXSpeed());
+		}
 		
-		//PROBLEM WITH THE RIGHT PADDLE
-		//FIX IMMEDIATELY
-		
-	/*	if (ball.getX() <= rightPaddle.getX() + rightPaddle.getWidth() + Math.abs(ball.getXSpeed()) && 
-		(ball.getY() > rightPaddle.getY() && ball.getY() >= rightPaddle.getY() + rightPaddle.getHeight() ||
-		ball.getY() + ball.getHeight() >= rightPaddle.getY() &&
-		ball.getY() + ball.getHeight() < rightPaddle.getY() + rightPaddle.getHeight())) {
-
-			if (ball.getX() <= rightPaddle.getX() + rightPaddle.getWidth() - Math.abs(ball.getXSpeed())) {
-				ball.setY(-ball.getYSpeed());
-			}
-			else {
-				ball.setX(-ball.getXSpeed());
-			}
-		
-		}*/
-		
-
-
-		//see if the paddles need to be moved
+		//PADDLE CONTROL
 
 		if(keys[0] == true)
 		{
-			leftPaddle.moveUpAndDraw(window);
-		} 
+			//move left paddle up and draw it on the window
+			leftPaddle.moveDownAndDraw(graphToBack);
+		}
 		if(keys[1] == true)
 		{
-			leftPaddle.moveDownAndDraw(window);
-
+			//move left paddle down and draw it on the window
+			
+			leftPaddle.moveUpAndDraw(graphToBack);
 		}
 		if(keys[2] == true)
 		{
-			rightPaddle.moveUpAndDraw(window);
+			rightPaddle.moveDownAndDraw(graphToBack);
+			
 		}
 		if(keys[3] == true)
 		{
-			rightPaddle.moveDownAndDraw(window);
+				rightPaddle.moveUpAndDraw(graphToBack);
 		}
 		
 
 		twoDGraph.drawImage(back, null, 0, 0);
-		
-		
-		
-		
-		
-		
-		
-		//draw score and string
-		graphToBack.setColor(Color.BLACK);
-		graphToBack.drawString("X",770,550);
-		graphToBack.drawString("X",10,10);
-		graphToBack.drawString("X",10,550);
-		graphToBack.drawString("X",770,10);
-		
-		
-		
 	}
+   
+   //EDGE COLLISION METHODS
+
 
 	public void keyPressed(KeyEvent e)
 	{
 		switch(toUpperCase(e.getKeyChar()))
 		{
-			case 'W' : keys[0]=true; break;
-			case 'Z' : keys[1]=true; break;
-			case 'I' : keys[2]=true; break;
-			case 'M' : keys[3]=true; break;
+			case 'W' : keys[1]=true; break;
+			case 'Z' : keys[0]=true; break;
+			case 'I' : keys[3]=true; break;
+			case 'M' : keys[2]=true; break;
 		}
 	}
 
@@ -171,10 +169,10 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	{
 		switch(toUpperCase(e.getKeyChar()))
 		{
-			case 'W' : keys[0]=false; break;
-			case 'Z' : keys[1]=false; break;
-			case 'I' : keys[2]=false; break;
-			case 'M' : keys[3]=false; break;
+			case 'W' : keys[1]=false; break;
+			case 'Z' : keys[0]=false; break;
+			case 'I' : keys[3]=false; break;
+			case 'M' : keys[2]=false; break;
 		}
 	}
 
@@ -192,5 +190,64 @@ public class Pong extends Canvas implements KeyListener, Runnable
       }catch(Exception e)
       {
       }
-  	}	
+  	}
+
+   
+	//COLLISION DETECTIONS
+   public boolean didCollideLeft() {
+	   if (ball.getX() < 1 ) {
+		   return true;
+	   }
+	   return false;
+   }
+   
+   public boolean didCollideRight() {
+	   if (ball.getX() > 780 ) {
+		   return true;
+	   }
+	   return false;
+   }
+
+   public boolean didCollideTop() {
+	   if (ball.getY() < 1 ) {
+		   return true;
+	   }
+	   return false;
+   }
+
+   public boolean didCollideBottom() {
+	   if (ball.getY() > 550 ) {
+		   return true;
+	   }
+	   return false;
+   }
+   
+   public boolean didLCollidePaddle(Paddle n){
+	   if(ball.getY() >= n.getY() && ball.getY() <= (n.getY()+n.getHeight()) && ball.getX() <= n.getX() + n.getWidth())
+			return true;
+	   else
+		   return false;
+   }
+   
+   public boolean didRCollidePaddle(Paddle n){
+	   if(ball.getY() >= n.getY() && ball.getY() <= (n.getY()+n.getHeight()) && ball.getX() >= n.getX()- n.getWidth())
+			return true;
+	   else
+		   return false;
+   }
+   
+   //RANDOM SPEED GENERATOR FOR -3 TO 3 EXCLUDING -1, 0, AND 1
+   
+   public int rand() {
+	   int output = (int)(Math.random()*7) -3;	
+	   if (output >= -1 && output <= 1) {
+		   return 2;
+	   }
+	   else {
+		   return output;
+	   }
+   }
+   
+   
+
 }
