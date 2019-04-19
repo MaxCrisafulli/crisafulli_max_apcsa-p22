@@ -17,6 +17,60 @@ public class PictureTester
     beach.explore();
   }
   
+  /** Method to test KeepOnlyBlue */
+  public static void testKeepOnlyBlue()
+  {
+    Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+    beach.explore();
+    beach.KeepOnlyBlue();
+    beach.explore();
+  }
+  
+  /** Method to test KeepOnlyRed */
+  public static void testKeepOnlyRed()
+  {
+    Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+    beach.explore();
+    beach.KeepOnlyRed();
+    beach.explore();
+  }
+  
+  /** Method to test KeepOnlyGreen */
+  public static void testKeepOnlyGreen()
+  {
+    Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+    beach.explore();
+    beach.KeepOnlyGreen();
+    beach.explore();
+  }
+  
+  /** Method to test Negate */
+  public static void testNegate()
+  {
+    Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+    beach.explore();
+    beach.Negate();
+    beach.explore();
+  }
+  
+  /** Method to test GrayScale */
+  public static void testGrayscale()
+  {
+    Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+    beach.explore();
+    beach.Grayscale();
+    beach.explore();
+  }
+  
+  /** Method to test GrayScale */
+  public static void testfixUnderwater()
+  {
+    Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\water.jpg");
+    beach.explore();
+    beach.fixUnderwater();
+    beach.explore();
+  }
+  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -58,15 +112,15 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
-    //testFixUnderwater();
+    //testfixUnderwater(); 
     //testMirrorVertical();
-    //testMirrorTemple();
+    testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();

@@ -98,6 +98,96 @@ public class Picture extends SimplePicture
     }
   }
   
+  /** Method to set R and G to 0 */
+  public void KeepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  /** Method to set G and B to 0 */
+  public void KeepOnlyRed()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setBlue(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  /** Method to set R and B to 0 */
+  public void KeepOnlyGreen()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setBlue(0);
+      }
+    }
+  }
+  
+  /** Negates the image */
+  public void Negate()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(255-pixelObj.getRed());
+        pixelObj.setBlue(255-pixelObj.getRed());
+        pixelObj.setGreen(255-pixelObj.getRed());
+      }
+    }
+  }
+  
+  /** Sets the image to GrayScale */
+  public void Grayscale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+    	int average = (pixelObj.getRed() + pixelObj.getBlue() + pixelObj.getGreen())/3;
+        pixelObj.setRed(average);
+        pixelObj.setBlue(average);
+        pixelObj.setGreen(average);
+      }
+    }
+  }
+  
+  /** Fixes the water.jpg */
+  public void fixUnderwater()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+    	pixelObj.setBlue(pixelObj.getBlue()*5-637);
+    	pixelObj.setRed(pixelObj.getRed()*5-637);
+    	pixelObj.setGreen(pixelObj.getGreen()*5-637);
+      }
+    }
+  }
+  
+  
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
