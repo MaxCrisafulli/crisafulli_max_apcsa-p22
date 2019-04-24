@@ -80,6 +80,43 @@ public class PictureTester
     caterpillar.explore();
   }
   
+  
+  /** Method to test mirrorVerticalRightToLeft */
+  public static void testMirrorVerticalRightToLeft()
+  {
+    Picture caterpillar = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\caterpillar.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorVerticalRightToLeft();
+    caterpillar.explore();
+  }
+  
+  /** Method to test mirrorHoriztonal */
+  public static void testMirrorHorizontal()
+  {
+    Picture caterpillar = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\redMotorcycle.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorHorizontal();
+    caterpillar.explore();
+  }
+  
+  /** Method to test mirrorHoriztonalBTT */
+  public static void testMirrorHorizontalBotToTop()
+  {
+    Picture caterpillar = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\redMotorcycle.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorHorizontalBotToTop();
+    caterpillar.explore();
+  }
+  
+  /** Method to test diagonally */
+  public static void testMirrorDiagonal()
+  {
+    Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+    beach.explore();
+    beach.mirrorDiagonal();
+    beach.explore();
+  }
+  
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
@@ -89,6 +126,25 @@ public class PictureTester
     temple.explore();
   }
   
+  /** Method to test mirrorArms */
+  public static void testMirrorArms()
+  {
+    Picture snowman = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\snowman.jpg");
+    snowman.explore();
+    snowman.mirrorArms();
+    snowman.explore();
+  }
+  
+  /** Method to test mirrorGull */
+  public static void testMirrorGull()
+  {
+    Picture gull = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\seagull.jpg");
+    gull.explore();
+    gull.mirrorGull();
+    gull.explore();
+  }
+
+  
   /** Method to test the collage method */
   public static void testCollage()
   {
@@ -97,12 +153,37 @@ public class PictureTester
     canvas.explore();
   }
   
+  
+  /** Method to test the copy2 method */
+  public static void testCopy()
+  {
+	Picture flower1 = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\flower1.jpg");
+    Picture canvas = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\640x480.jpg");
+    canvas.copy2(flower1 ,0,0,50,50);
+    canvas.copy2(flower1 ,50,0,100,50);
+    canvas.explore();
+  }
+
+  
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
     Picture swan = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\swan.jpg");
+    swan.explore();
     swan.edgeDetection(10);
     swan.explore();
+  }
+  
+  /** Method to test edgeDetection2 */
+  public static void testEdgeDetection2()
+  {
+    
+	Picture swan = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\whiteflower.jpg");
+	swan.edgeDetection(15);
+    swan.explore();
+    Picture swan2 = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\whiteflower.jpg");
+    swan2.edgeDetection2(17);
+    swan2.explore();
   }
   
   /** Main method for testing.  Every class can have a main
@@ -120,15 +201,18 @@ public class PictureTester
     //testGrayscale();
     //testfixUnderwater(); 
     //testMirrorVertical();
-    testMirrorTemple();
+	//testMirrorVerticalRightToLeft();
+	//testMirrorHorizontal();
+    //testMirrorHorizontalBotToTop();
+    //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
-    //testMirrorDiagonal();
+    //testMirrorDiagonal();  
     //testCollage();
     //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
-    //testChromakey();
+    //testChromakey();                //DONT HAVE TO DO ANYTHING AFTER THIS
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();
