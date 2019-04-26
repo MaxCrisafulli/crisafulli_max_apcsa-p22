@@ -424,7 +424,7 @@ public void mirrorHorizontalBotToTop()
     this.copy(flower1,400,0);
     this.copy(flower2,500,0);
     this.mirrorVertical();
-    this.write("collage.jpg");
+    this.write("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\640x480.jpg");
   }
   
   

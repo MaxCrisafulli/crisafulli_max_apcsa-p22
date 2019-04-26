@@ -178,11 +178,11 @@ public class PictureTester
   public static void testEdgeDetection2()
   {
     
-	Picture swan = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\whiteflower.jpg");
-	swan.edgeDetection(15);
+	Picture swan = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\swan.jpg");
+	swan.edgeDetection(20);
     swan.explore();
-    Picture swan2 = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\whiteflower.jpg");
-    swan2.edgeDetection2(17);
+    Picture swan2 = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\swan.jpg");
+    swan2.edgeDetection2(20);
     swan2.explore();
   }
   
@@ -207,7 +207,7 @@ public class PictureTester
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
-    testMirrorDiagonal();  
+    //testMirrorDiagonal();  
     //testCollage();
     //testCopy();
     //testEdgeDetection();
