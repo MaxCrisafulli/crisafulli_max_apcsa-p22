@@ -68,6 +68,20 @@ public class Paddle extends Block
 	   this.setY(this.getY()+getSpeed());
 	   draw(window);
    }
+   
+   public void moveLeftAndDraw(Graphics window)
+   {
+	   draw(window,Color.BLACK);
+	   this.setX(this.getX()-getSpeed());
+	   draw(window);
+   }
+   
+   public void moveRightAndDraw(Graphics window)
+   {
+	   draw(window,Color.BLACK);
+	   this.setX(this.getX()+getSpeed());
+	   draw(window);
+   }
 
    //add get methods
    public int getSpeed() {
