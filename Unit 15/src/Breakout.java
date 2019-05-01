@@ -25,7 +25,7 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 	public Breakout()
 	{
 		//set up all variables related to the game
-		ball = new Ball(350,250,10,10,Color.WHITE,rand(), rand());
+		ball = new Ball(350,250,10,10,Color.WHITE,3, 3);
 		paddle = new Paddle(400,400,40,40,Color.WHITE,2);
 		keys = new boolean[4];
 
@@ -113,28 +113,28 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 
 		//LEFT PADDLE COLLISION
 		
-		if (didLCollidePaddle(paddle)) {
+		if (lCollide(paddle)) {
 			ball.setYSpeed(ball.getYSpeed());
 			ball.setXSpeed(-ball.getXSpeed());
 		}
 		
 		//RIGHT PADDLE COLLISION
 		
-		if (didRCollidePaddle(paddle)) {
+		if (rCollide(paddle)) {
 			ball.setYSpeed(ball.getYSpeed());
 			ball.setXSpeed(-ball.getXSpeed());
 		} 
 		
 		//TOP PADDLE COLLISION
 		
-		if (didTCollidePaddle(paddle)) {
+		if (tCollide(paddle)) {
 			ball.setYSpeed(-ball.getYSpeed());
 			ball.setXSpeed(ball.getXSpeed());
 		} 
 		
 		//BOTTOM PADDLE COLLISION
 		
-		if (didBCollidePaddle(paddle)) {
+		if (bCollide(paddle)) {
 			ball.setYSpeed(-ball.getYSpeed());
 			ball.setXSpeed(ball.getXSpeed());
 		} 
@@ -235,29 +235,31 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 	   return false;
    }
    
-   public boolean didLCollidePaddle(Paddle n){
-	   if(n.getY() >= ball.getY() && ball.getY() <= n.getY()+n.getHeight()   &&    ball.getX() >= n.getX())
+   
+   //X AND Y ARE IN TOP LEFT AND DRAWS RIGHT AND DOWN!!!
+   public boolean lCollide(Paddle n){
+	   if(ball.getX() + 2*ball.getXSpeed() >= n.getX() && ball.getX() < n.getX() + n.getWidth() /2 && ball.getY() >= n.getY() && ball.getY() <=  n.getY() + n.getHeight())
 			return true;
 	   else
 		   return false;
    }
    
-   public boolean didRCollidePaddle(Paddle n){
-	   if(n.getY() >= ball.getY() && ball.getY() <= n.getY()+n.getHeight()   &&    ball.getX() <= n.getX() + n.getWidth())
+   public boolean rCollide (Paddle n){
+	   if(ball.getX() + 2*ball.getXSpeed() <= n.getX() + n.getWidth() && ball.getX() >= n.getX() + n.getWidth()/2 && ball.getY() >= n.getY() && ball.getY() <=  n.getY() + n.getHeight())
 			return true;
 	   else
 		   return false;
    }
    
-   public boolean didTCollidePaddle(Paddle n){
-	   if(ball.getY() >= n.getY() + n.getHeight() && ball.getX() < n.getX() + n.getHeight() && ball.getX() > n.getX())
+   public boolean tCollide(Paddle n){
+	   if(ball.getY() + 2*ball.getYSpeed() >= n.getY() && ball.getY() <= n.getY() + n.getHeight()/2 && ball.getX() >= n.getX() && ball.getX() <=  n.getX() + n.getWidth())
 			return true;
 	   else
 		   return false;
    }
    
-   public boolean didBCollidePaddle(Paddle n){
-	   if(ball.getY() <= n.getY() && ball.getX() < n.getX() + n.getHeight() && ball.getX() > n.getX())
+   public boolean bCollide(Paddle n){
+	   if(ball.getY() + 2*ball.getYSpeed() <= n.getY() + n.getHeight() && ball.getY() >= n.getY() + n.getHeight()/2 && ball.getX() >= n.getX() && ball.getX() <=  n.getX() + n.getWidth())
 			return true;
 	   else
 		   return false;
