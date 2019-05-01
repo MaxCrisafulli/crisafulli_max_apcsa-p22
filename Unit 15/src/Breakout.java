@@ -12,7 +12,12 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.awt.event.ActionListener;
+
+
+
+
 
 public class Breakout extends Canvas implements KeyListener, Runnable
 {
@@ -20,7 +25,7 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 	private Paddle paddle;
 	private boolean[] keys;
 	private BufferedImage back;
-
+	private ArrayList<Block> blocks;
 
 	public Breakout()
 	{
@@ -28,8 +33,60 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 		ball = new Ball(350,250,10,10,Color.WHITE,3, 3);
 		paddle = new Paddle(400,400,40,40,Color.WHITE,2);
 		keys = new boolean[4];
+		blocks = new ArrayList<Block>();
+		
+		//top side blocks
+		for (int i = 5; i<800; i+= 85) {
+			for (int j = 5; j < 90; j+= 45) {
+				blocks.add(new Block(i,j , 80, 40, Color.WHITE));
+			}
+		}
 
-    
+		//bottom side blocks
+		for (int i = 5; i<800; i+= 85) {
+			for (int j = 660; j < 750; j+= 45) {
+				blocks.add(new Block(i,j , 80, 40, Color.WHITE));
+			}
+		}
+		
+		//left side blocks
+		for (int j = 95; j < 660; j+= 45) {
+			for (int i = 5; i<175; i+= 85) {
+				blocks.add(new Block(i,j , 80, 40, Color.WHITE));
+			}
+		}
+
+		//right side blocks
+		for (int i = 5; i<800; i+= 85) {
+			for (int j = 660; j < 750; j+= 45) {
+				blocks.add(new Block(i,j , 80, 40, Color.WHITE));
+			}
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
     	setBackground(Color.BLACK);
 		setVisible(true);
 		
@@ -43,7 +100,6 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 
    public void paint(Graphics window)
    {
-	   
 		//set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D)window;
 
@@ -59,6 +115,9 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 
 		ball.moveAndDraw(graphToBack);
 		paddle.draw(graphToBack);
+		for (Block block : blocks) {
+			block.draw(graphToBack);
+		}
 		//graphToBack.setColor(Color.WHITE);
 		//graphToBack.setFont(new Font("Helvetica", Font.PLAIN, 15));
 		//graphToBack.drawString(Integer.toString(lscore),15,25);
@@ -215,7 +274,7 @@ public class Breakout extends Canvas implements KeyListener, Runnable
    }
    
    public boolean didCollideRight() {
-	   if (ball.getX() > 780 ) {
+	   if (ball.getX() > 765 ) {
 		   return true;
 	   }
 	   return false;
