@@ -28,7 +28,7 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 	{
 		//set up all variables related to the game
 		ball = new Ball(350,250,10,10,Color.WHITE,3, 3);
-		paddle = new Paddle(400,400,40,40,Color.WHITE,2);
+		paddle = new Paddle(400,400,40,40,Color.GRAY,2);
 		keys = new boolean[4];
 		blocks = new ArrayList<Block>();
 		level  = 1;
@@ -94,7 +94,7 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 		}
 		graphToBack.setColor(Color.WHITE);
 		graphToBack.setFont(new Font("Helvetica", Font.PLAIN, 25));
-		graphToBack.drawString("Level. " + Integer.toString(level),400,360);
+		graphToBack.drawString("Level. " + Integer.toString(level),350,360);
 
 
 		//LEVEL CHANGE
