@@ -15,10 +15,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 
-
-
-
-
 public class Breakout extends Canvas implements KeyListener, Runnable
 {
 	private Ball ball;
@@ -26,6 +22,7 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 	private boolean[] keys;
 	private BufferedImage back;
 	private ArrayList<Block> blocks;
+	private int level;
 
 	public Breakout()
 	{
@@ -34,59 +31,36 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 		paddle = new Paddle(400,400,40,40,Color.WHITE,2);
 		keys = new boolean[4];
 		blocks = new ArrayList<Block>();
+		level  = 1;
 		
 		//top side blocks
-		for (int i = 5; i<800; i+= 85) {
+		for (int i = 5; i<750; i+= 85) {
 			for (int j = 5; j < 90; j+= 45) {
-				blocks.add(new Block(i,j , 80, 40, Color.WHITE));
+				blocks.add(new Block(i,j , 80, 40, Color.RED));
 			}
 		}
 
 		//bottom side blocks
-		for (int i = 5; i<800; i+= 85) {
-			for (int j = 660; j < 750; j+= 45) {
-				blocks.add(new Block(i,j , 80, 40, Color.WHITE));
+		for (int i = 5; i<750; i+= 85) {
+			for (int j = 680; j < 750; j+= 45) {
+				blocks.add(new Block(i,j , 80, 40, Color.BLUE));
 			}
 		}
 		
 		//left side blocks
 		for (int j = 95; j < 660; j+= 45) {
 			for (int i = 5; i<175; i+= 85) {
-				blocks.add(new Block(i,j , 80, 40, Color.WHITE));
+				blocks.add(new Block(i,j , 80, 40, Color.GREEN));
 			}
 		}
 
 		//right side blocks
-		for (int i = 5; i<800; i+= 85) {
-			for (int j = 660; j < 750; j+= 45) {
-				blocks.add(new Block(i,j , 80, 40, Color.WHITE));
+		for (int j = 95; j < 660; j+= 45) {
+			for (int i = 600; i<750; i+= 85) {
+				blocks.add(new Block(i,j , 80, 40, Color.YELLOW));
 			}
 		}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
     	setBackground(Color.BLACK);
 		setVisible(true);
 		
@@ -118,44 +92,56 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 		for (Block block : blocks) {
 			block.draw(graphToBack);
 		}
-		//graphToBack.setColor(Color.WHITE);
-		//graphToBack.setFont(new Font("Helvetica", Font.PLAIN, 15));
-		//graphToBack.drawString(Integer.toString(lscore),15,25);
-		//graphToBack.drawString(Integer.toString(rscore),765,25);
+		graphToBack.setColor(Color.WHITE);
+		graphToBack.setFont(new Font("Helvetica", Font.PLAIN, 25));
+		graphToBack.drawString("Level. " + Integer.toString(level),400,360);
 
 
-		//RIGHT WALL
-		/*
-		if (didCollideRight()) {
+		//LEVEL CHANGE
+		if (blocks.size() == 0) {
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
-			//lscore++;
+			level++;
 			graphToBack.setColor(Color.BLACK);
-			graphToBack.fillRect(0,0,50,50);
+			graphToBack.fillRect(400,290,75,75);
 			graphToBack.setColor(Color.WHITE);
-			//graphToBack.drawString(Integer.toString(lscore),15,25);
+			graphToBack.drawString(Integer.toString(level),400,360);
+			graphToBack.setColor(Color.BLACK);
+			//top side blocks
+			for (int i = 5; i<750; i+= 85) {
+				for (int j = 5; j < 90; j+= 45) {
+					blocks.add(new Block(i,j , 80, 40, Color.RED));
+				}
+			}
+
+			//bottom side blocks
+			for (int i = 5; i<750; i+= 85) {
+				for (int j = 680; j < 750; j+= 45) {
+					blocks.add(new Block(i,j , 80, 40, Color.BLUE));
+				}
+			}
+			
+			//left side blocks
+			for (int j = 95; j < 660; j+= 45) {
+				for (int i = 5; i<175; i+= 85) {
+					blocks.add(new Block(i,j , 80, 40, Color.GREEN));
+				}
+			}
+
+			//right side blocks
+			for (int j = 95; j < 660; j+= 45) {
+				for (int i = 600; i<750; i+= 85) {
+					blocks.add(new Block(i,j , 80, 40, Color.YELLOW));
+				}
+			}
+			for (Block block : blocks) {
+				block.draw(graphToBack);
+			}
 			graphToBack.setColor(Color.BLACK);
 			graphToBack.fillRect(ball.getX(),ball.getY(),10,10);
 			ball = null;
-			ball = new Ball(350,250,10,10,Color.WHITE,rand(), rand());
+			ball = new Ball(350,250,10,10,Color.WHITE,3, 3);
 		}
-		
-		
-		//LEFT WALL
-		if (didCollideLeft()) {
-			ball.setXSpeed(0);
-			ball.setYSpeed(0);
-			//rscore++;
-			graphToBack.setColor(Color.BLACK);
-			graphToBack.fillRect(750,0,50,50);
-			graphToBack.setColor(Color.WHITE);
-			//graphToBack.drawString(Integer.toString(rscore),765,25);
-			graphToBack.setColor(Color.BLACK);
-			graphToBack.fillRect(ball.getX(),ball.getY(),10,10);
-			ball = null;
-			ball = new Ball(350,250,10,10,Color.WHITE,rand(), rand());
-		}
-		*/
 		
 		
 		//TOP OR BOTTOM WALL
@@ -198,6 +184,27 @@ public class Breakout extends Canvas implements KeyListener, Runnable
 			ball.setXSpeed(ball.getXSpeed());
 		} 
 		
+		for (Block block : blocks) {
+			if (lCollide(block) || rCollide(block)) {
+				block.draw(graphToBack, Color.BLACK);
+				blocks.remove(block);
+				//level++;
+				//graphToBack.setColor(Color.BLACK);
+				//graphToBack.fillRect(400,290,75,75);
+				//graphToBack.setColor(Color.WHITE);
+				//graphToBack.drawString(Integer.toString(level),400,360);
+				//graphToBack.setColor(Color.BLACK);
+				ball.setXSpeed(-ball.getXSpeed());
+			}
+		}
+		
+		for (Block block : blocks) {
+			if (tCollide(block) || bCollide(block)) {
+				block.draw(graphToBack, Color.BLACK);
+				blocks.remove(block);
+				ball.setYSpeed(-ball.getYSpeed());
+			}
+		}
 		
 		//PADDLE CONTROL
 
@@ -274,7 +281,7 @@ public class Breakout extends Canvas implements KeyListener, Runnable
    }
    
    public boolean didCollideRight() {
-	   if (ball.getX() > 765 ) {
+	   if (ball.getX() > 760 ) {
 		   return true;
 	   }
 	   return false;
@@ -288,7 +295,7 @@ public class Breakout extends Canvas implements KeyListener, Runnable
    }
 
    public boolean didCollideBottom() {
-	   if (ball.getY() > 750 ) {
+	   if (ball.getY() > 760 ) {
 		   return true;
 	   }
 	   return false;
@@ -296,28 +303,28 @@ public class Breakout extends Canvas implements KeyListener, Runnable
    
    
    //X AND Y ARE IN TOP LEFT AND DRAWS RIGHT AND DOWN!!!
-   public boolean lCollide(Paddle n){
+   public boolean lCollide(Block n){
 	   if(ball.getX() + 2*ball.getXSpeed() >= n.getX() && ball.getX() < n.getX() + n.getWidth() /2 && ball.getY() >= n.getY() && ball.getY() <=  n.getY() + n.getHeight())
 			return true;
 	   else
 		   return false;
    }
    
-   public boolean rCollide (Paddle n){
+   public boolean rCollide (Block n){
 	   if(ball.getX() + 2*ball.getXSpeed() <= n.getX() + n.getWidth() && ball.getX() >= n.getX() + n.getWidth()/2 && ball.getY() >= n.getY() && ball.getY() <=  n.getY() + n.getHeight())
 			return true;
 	   else
 		   return false;
    }
    
-   public boolean tCollide(Paddle n){
+   public boolean tCollide(Block n){
 	   if(ball.getY() + 2*ball.getYSpeed() >= n.getY() && ball.getY() <= n.getY() + n.getHeight()/2 && ball.getX() >= n.getX() && ball.getX() <=  n.getX() + n.getWidth())
 			return true;
 	   else
 		   return false;
    }
    
-   public boolean bCollide(Paddle n){
+   public boolean bCollide(Block n){
 	   if(ball.getY() + 2*ball.getYSpeed() <= n.getY() + n.getHeight() && ball.getY() >= n.getY() + n.getHeight()/2 && ball.getX() >= n.getX() && ball.getX() <=  n.getX() + n.getWidth())
 			return true;
 	   else

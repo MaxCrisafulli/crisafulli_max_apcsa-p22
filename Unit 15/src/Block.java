@@ -122,6 +122,7 @@ public class Block implements Locatable
 	   window.fillRect(getX(), getY(), getWidth(), getHeight());
    }
    
+   
 	public boolean equals(Block obj)
 	{
 		if (getX() == obj.getX() && getY() == obj.getY() && getWidth() == obj.getWidth() && getHeight() == obj.getHeight() && getColor() == obj.getColor()){
