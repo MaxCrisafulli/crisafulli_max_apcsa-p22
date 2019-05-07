@@ -19,13 +19,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private Alien alienOne;
 	private Alien alienTwo;
-
-	/* uncomment once you are ready for this part
-	 *
-   private AlienHorde horde;
+    private AlienHorde horde;
 	private Bullets shots;
-	*/
-
+	
 	private boolean[] keys;
 	private BufferedImage back;
 
@@ -34,10 +30,14 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		setBackground(Color.black);
 
 		keys = new boolean[5];
-
-		//instantiate other instance variables
-		//Ship, Alien
-
+		
+		//INSTANTIATING EVERYTHING
+		ship = new Ship(400,300,50,50,10);
+		alienOne = new Alien(200,100,30,30,2);
+		alienTwo = new Alien(300,100,30,30,2);
+		shots = new Bullets();
+		//horde = new AlienHorde();
+		
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -68,17 +68,60 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
 
+		
+		//add code to move Ship, Alien, etc.
+		ship.draw(graphToBack);
+		alienOne.draw(graphToBack);
+		alienTwo.draw(graphToBack);
+		
+		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
+
+
+		
+		
+		shots.add(new Ammo());
+		
+		shots.get(0).setX(ship.getX());
+		shots.get(0).setY(ship.getY());
+		
+		for (Ammo b : shots) {
+			if (b.getVisible() == true) {
+				b.draw(graphToBack);
+			}
+		}
+		
+		
+		
+		//KEYS TO MOVE THE SHIP
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");
 		}
 
-		//add code to move Ship, Alien, etc.
+		if(keys[1] == true)
+		{
+			ship.move("RIGHT");
+		}
 
+		if(keys[2] == true)
+		{
+			ship.move("UP");
+		}
 
-		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-
-
+		if(keys[3] == true)
+		{
+			ship.move("DOWN");
+		}
+		if(keys[4] == true)
+		{
+			shots.add(new Ammo());
+			shots.get(shots.size-1).setVisible(true);
+			shots.get(0).draw(graphToBack);
+			while (shots.get(0).getY() < 0) {
+				shots.get(0).move("UP");
+			}
+		}
+		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 

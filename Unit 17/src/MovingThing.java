@@ -44,12 +44,12 @@ public abstract class MovingThing implements Moveable
 
 	public void setX(int x)
 	{
-		x = xPos;
+		xPos = x;
 	}
 
 	public void setY(int y)
 	{
-		y = yPos;
+		yPos = y;
 	}
 
 	public int getX()
