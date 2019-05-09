@@ -21,6 +21,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Alien alienTwo;
     private AlienHorde horde;
 	private Bullets shots;
+	private boolean bulletexist;
 	
 	private boolean[] keys;
 	private BufferedImage back;
@@ -76,55 +77,57 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 
-
-		
-		
-		shots.add(new Ammo());
-		
-		shots.get(0).setX(ship.getX());
-		shots.get(0).setY(ship.getY());
-		
-		for (Ammo b : shots) {
-			if (b.getVisible() == true) {
-				b.draw(graphToBack);
-			}
+		if (bulletexist == true && shots.get(0).getY() <= 0) {
+			shots.get(0).setVisible(false);
+			shots.remove(0);
+			bulletexist = false;
 		}
 		
+		if (bulletexist == true && shots.get(0).getVisible() == true && shots.get(0).getY() > 0) {
+			shots.get(0).move2("UP", graphToBack);
+			System.out.println("Bullet Y::   " + shots.get(0).getX() + "  Bullet X::   " + shots.get(0).getY());
+		}
 		
 		
 		//KEYS TO MOVE THE SHIP
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");
+			System.out.println(ship.getX() + " " + ship.getY());
 		}
 
 		if(keys[1] == true)
 		{
 			ship.move("RIGHT");
+			System.out.println(ship.getX() + " " + ship.getY());
 		}
 
 		if(keys[2] == true)
 		{
 			ship.move("UP");
+			System.out.println(ship.getX() + " " + ship.getY());
 		}
 
 		if(keys[3] == true)
 		{
 			ship.move("DOWN");
+			System.out.println(ship.getX() + " " + ship.getY());
 		}
 		if(keys[4] == true)
 		{
-			shots.add(new Ammo());
-			shots.get(shots.size-1).setVisible(true);
-			shots.get(0).draw(graphToBack);
-			while (shots.get(0).getY() < 0) {
-				shots.get(0).move("UP");
-			}
+			bulletexist = true;
+			shots.add(new Ammo(ship.getX(), ship.getY()));
+			shots.get(0).setVisible(true);
+			shots.cleanEmUp2();
 		}
 		
 		twoDGraph.drawImage(back, null, 0, 0);
+		
 	}
 
+	
+	
+	
 
 	public void keyPressed(KeyEvent e)
 	{
@@ -187,7 +190,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
    	{
    		while(true)
    		{
-   		   Thread.currentThread().sleep(5);
+   		   Thread.currentThread().sleep(3);
             repaint();
          }
       }catch(Exception e)
@@ -195,4 +198,3 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
       }
   	}
 }
-

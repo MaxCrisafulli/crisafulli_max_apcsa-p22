@@ -23,6 +23,11 @@ public class Bullets
 	{
 		ammo.add(al);
 	}
+	
+	public void remove(Ammo al)
+	{
+		ammo.remove(al);
+	}
 
 	//post - draw each Ammo
 	public void drawEmAll( Graphics window )
@@ -45,6 +50,13 @@ public class Bullets
 			b = null;
 		}
 	}
+	
+	public void cleanEmUp2()
+	{
+		for (int i = 1; i < ammo.size(); i++) {
+			ammo.remove(i);
+		}
+	}
 
 	public List<Ammo> getList()
 	{
@@ -54,7 +66,11 @@ public class Bullets
 	public Ammo get(int i) {
 		return ammo.get(i);
 	}
-
+	
+	public Ammo remove(int i) {
+		return ammo.remove(i);
+	}
+	
 	public String toString()
 	{
 		return "";
