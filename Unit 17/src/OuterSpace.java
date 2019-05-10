@@ -22,9 +22,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     private AlienHorde horde;
 	private Bullets shots;
 	private boolean bulletexist;
-	
 	private boolean[] keys;
 	private BufferedImage back;
+	private String direction;
 
 	public OuterSpace()
 	{
@@ -37,7 +37,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		alienOne = new Alien(200,100,30,30,2);
 		alienTwo = new Alien(300,100,30,30,2);
 		shots = new Bullets();
-		//horde = new AlienHorde();
+		horde = new AlienHorde();
+		direction = "RIGHT";
+
+		//makes the alien horde
+		for (int i = 5; i < 800; i+=100) {
+			for (int j = 25; j < 126; j+= 50) {
+				horde.add(new Alien(i,j, 40, 40, 2));
+			}
+		}
 		
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -68,12 +76,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
-
 		
-		//add code to move Ship, Alien, etc.
+		
+		
+		//draws the aliens and the ship
 		ship.draw(graphToBack);
-		alienOne.draw(graphToBack);
-		alienTwo.draw(graphToBack);
+		horde.drawEmAll(graphToBack);
+		
 		
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 
@@ -85,8 +94,40 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		if (bulletexist == true && shots.get(0).getVisible() == true && shots.get(0).getY() > 0) {
 			shots.get(0).move2("UP", graphToBack);
-			System.out.println("Bullet Y::   " + shots.get(0).getX() + "  Bullet X::   " + shots.get(0).getY());
 		}
+		
+		
+		
+		//moves aliens
+		horde.moveEmAll(direction, graphToBack);
+		
+		if (horde.get(horde.getSize()-1).getX() + horde.get(horde.getSize()-1).getWidth() >= 785) {
+			direction = "DOWN";
+			horde.moveEmAll(direction, graphToBack);
+			direction = "LEFT";
+		}
+		if (horde.get(0).getX() + horde.get(0).getWidth() <= 30) {
+			direction = "DOWN";
+			horde.moveEmAll(direction, graphToBack);
+			direction = "RIGHT";
+		}
+		
+		if (ship.getX() >= 745) {
+			ship.setX(745);
+		}
+		if (ship.getX()  <-10) {
+			ship.setX(-10);
+		}
+		if (ship.getY() >= 510) {
+			ship.setY(510);
+		}
+		if (ship.getY() < 0) {
+			ship.setY(0);
+		}
+		
+		
+		
+		
 		
 		
 		//KEYS TO MOVE THE SHIP
@@ -190,7 +231,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
    	{
    		while(true)
    		{
-   		   Thread.currentThread().sleep(3);
+   		   Thread.currentThread().sleep(5);
             repaint();
          }
       }catch(Exception e)

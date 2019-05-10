@@ -68,7 +68,6 @@ public class Ammo extends MovingThing
 			draw2 (window, Color.BLACK);
 			this.setY(this.getY() - 2);
 			draw2(window, Color.YELLOW);
-			
 		}
 		
 		if (direction.equals("DOWN")) {
