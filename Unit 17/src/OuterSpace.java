@@ -128,8 +128,6 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		
 		
-		
-		
 		//KEYS TO MOVE THE SHIP
 		if(keys[0] == true)
 		{
@@ -225,6 +223,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
       //no code needed here
 	}
 
+	
    public void run()
    {
    	try
@@ -238,4 +237,36 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
       {
       }
   	}
+   
+ //COLLISION DETECTIONS
+ //X AND Y ARE IN TOP LEFT AND DRAWS RIGHT AND DOWN!!!
+ public boolean lCollide (MovingThing n) {
+ 	   if(shots.get(0).getX() + 2*shots.get(0).getSpeed() >= n.getX() && shots.get(0).getX() < n.getX() + n.getWidth() /2 && shots.get(0).getY() >= n.getY() && shots.get(0).getY() <=  n.getY() + n.getHeight())
+ 			return true;
+ 	   else
+ 		   return false;
+ }
+
+ public boolean rCollide (MovingThing n){
+ 	   if(shots.get(0).getX() + 2*shots.get(0).getSpeed() <= n.getX() + n.getWidth() && shots.get(0).getX() >= n.getX() + n.getWidth()/2 && shots.get(0).getY() >= n.getY() && shots.get(0).getY() <=  n.getY() + n.getHeight())
+ 			return true;
+ 	   else
+ 		   return false;
+ }
+
+ public boolean tCollide(MovingThing n){
+ 	   if(shots.get(0).getY() + 2*shots.get(0).getSpeed() >= n.getY() && shots.get(0).getY() <= n.getY() + n.getHeight()/2 && shots.get(0).getX() >= n.getX() && shots.get(0).getX() <=  n.getX() + n.getWidth())
+ 			return true;
+ 	   else
+ 		   return false;
+ }
+
+ public boolean bCollide(MovingThing n){
+ 	   if(shots.get(0).getY() + 2*shots.get(0).getSpeed() <= n.getY() + n.getHeight() && shots.get(0).getY() >= n.getY() + n.getHeight()/2 && shots.get(0).getX() >= n.getX() && shots.get(0).getX() <=  n.getX() + n.getWidth())
+ 			return true;
+ 	   else
+ 		   return false;
+ }
+ 
 }
+
