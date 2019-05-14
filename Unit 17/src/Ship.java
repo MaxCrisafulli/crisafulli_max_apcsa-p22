@@ -1,6 +1,3 @@
-//(c) A+ Computer Science
-//www.apluscompsci.com
-//Name -
 
 import java.io.File;
 import java.net.URL;
@@ -60,19 +57,19 @@ public class Ship extends MovingThing
 	public void move(String direction)
 	{
 		if (direction.equals("UP")) {
-			setY(this.getY() - 1);
+			setY(this.getY() - speed);
 		}
 		
 		if (direction.equals("DOWN")) {
-			setY(this.getY() + 1);
+			setY(this.getY() + speed);
 		}
 		
 		if (direction.equals("LEFT")) {
-			setX(this.getX() - 1);
+			setX(this.getX() - speed);
 		}
 		
 		if (direction.equals("RIGHT")) {
-			setX(this.getX() + 1);
+			setX(this.getX() + speed);
 		}
 
 	}

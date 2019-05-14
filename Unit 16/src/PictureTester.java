@@ -186,6 +186,12 @@ public class PictureTester
     swan2.explore();
   }
   
+  //make a testing method for encoding
+  //display original image (beach)
+  //display message
+  //display encoded
+  //display decoded
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)

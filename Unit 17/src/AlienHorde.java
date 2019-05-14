@@ -28,6 +28,11 @@ public class AlienHorde
 	{
 		return aliens.size();
 	}
+	
+	public List<Alien> getAliens()
+	{
+		return aliens;
+	}
 
 	public void drawEmAll(Graphics window)
 	{
@@ -48,7 +53,7 @@ public class AlienHorde
 		}
 	}
 
-	public void removeDeadOnes(List<Ammo> shots)
+	public void removeDeadOnes()
 	{
 		for (Alien a : aliens) {
 			if (a.getAlive() == false) {
