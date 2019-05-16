@@ -27,6 +27,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private BufferedImage back;
 	private String direction;
 	private boolean loseflag;
+	private boolean pressed;
 
 	public OuterSpace()
 	{
@@ -219,8 +220,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			keys[3] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE)
+		if (e.getKeyCode() == KeyEvent.VK_SPACE && pressed = false)
 		{
+			pressed = true;
 			keys[4] = true;
 		}
 		repaint();
@@ -247,6 +249,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
 			keys[4] = false;
+			pressed = false;
 		}
 		repaint();
 	}
