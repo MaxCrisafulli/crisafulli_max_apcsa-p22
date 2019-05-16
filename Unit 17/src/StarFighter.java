@@ -10,7 +10,7 @@ public class StarFighter extends JFrame
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 
-	public StarFighter()
+	public StarFighter() 
 	{
 		super("STARFIGHTER");
 		setSize(WIDTH,HEIGHT);
