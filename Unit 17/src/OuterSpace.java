@@ -130,9 +130,6 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (ship.getY() < 0) {
 			ship.setY(0);
 		}
-	    if (ship.getY() < 450) {
-			ship.setY(450);
-		}
 		
 		if (loseflag == false)
 		for (Alien a : horde.getAliens()) {
@@ -140,7 +137,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				a.setAlive(false);
 				horde.removeDeadOnes();
 			}
-			if (/*a.getY() > ship.getY() - ship.getHeight() + 20 ||*/ a.getY() >= 525) {
+			if (Math.abs(ship.getX() - a.getX()) < 15 && Math.abs(ship.getY() - a.getY()) < 15 || a.getY() >= 550) { //lose condition
 				loseflag = true;
 				break;
 			}
