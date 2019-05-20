@@ -175,16 +175,19 @@ public class PictureTester
   }
   
   /** Method to test edgeDetection2 */
-  public static void testEdgeDetection2()
+  public static void exttest()
   {
     
-	Picture swan = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\swan.jpg");
-	swan.edgeDetection(20);
-    swan.explore();
-    Picture swan2 = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\swan.jpg");
-    swan2.edgeDetection2(20);
-    swan2.explore();
+	Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+    Picture msg = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\msg.jpg");
+    msg.explore();
+    beach.explore();
+    beach.encode(msg);
+    beach.explore();
+    beach.decode();
+    beach.explore();
   }
+  
   
   //make a testing method for encoding
   //display original image (beach)
@@ -224,5 +227,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	  exttest();
   }
 }

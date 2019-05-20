@@ -493,7 +493,120 @@ public void mirrorHorizontalBotToTop()
    }
    
  }
-  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ public void encode(Picture msg)
+ {
+   Pixel[][] imgpixels = this.getPixels2D();
+   Pixel[][] msgpixels = msg.getPixels2D();
+   Boolean[][] msglocs = new Boolean[msgpixels.length][msgpixels[0].length];
+   
+   
+   //generates a boolean matrix of message pixel locations
+   for (int i = 0; i < msgpixels.length; i++) {
+	   for (int j = 0; j < msgpixels[i].length;j++) {
+		   if (msgpixels[i][j].getRed() > 100 && msgpixels[i][j].getBlue() > 100 && msgpixels[i][j].getGreen() > 100) { 
+			   msglocs[i][j] = true;
+		   }
+		   else {
+			   msglocs[i][j] = false;
+		   }
+	   }
+   }
+   //changes the pixels at the message location
+   for (int i = 0; i < imgpixels.length; i++) {
+	   for (int j = 0; j < imgpixels[i].length;j++) {
+		   if (msglocs[i][j] == true) { //if its the message it will set the final digit to odd prime numbers
+			int rdig = imgpixels[i][j].getRed()%10;
+		   	int gdig = imgpixels[i][j].getGreen()%10;
+		   	int bdig = imgpixels[i][j].getBlue()%10;
+		   	int rleft = imgpixels[i][j].getRed() - rdig;
+		   	int gleft = imgpixels[i][j].getGreen() - gdig;
+		   	int bleft = imgpixels[i][j].getBlue() - bdig;
+		   	while (!isOP(rdig)) {
+			   	rdig++;
+		   	}
+		   	while (!isOP(gdig)) {
+			   	gdig++;
+		   	}
+		   	while (!isOP(bdig)) {
+			   	bdig++;
+		   	}
+		   	imgpixels[i][j].setRed(rdig + rleft);
+		   	imgpixels[i][j].setGreen(gdig + gleft);
+		   	imgpixels[i][j].setBlue(bdig + bleft);
+		   }
+		   else {
+				int rdig = imgpixels[i][j].getRed()%10;
+			   	int gdig = imgpixels[i][j].getGreen()%10;
+			   	int bdig = imgpixels[i][j].getBlue()%10;
+			   	int rleft = imgpixels[i][j].getRed() - rdig;
+			   	int gleft = imgpixels[i][j].getGreen() - gdig;
+			   	int bleft = imgpixels[i][j].getBlue() - bdig;
+			   	while (isOP(rdig)) {
+				   	rdig++;
+			   	}
+			   	while (isOP(gdig)) {
+				   	gdig++;
+			   	}
+			   	while (isOP(bdig)) {
+				   	bdig++;
+			   	}
+			   	imgpixels[i][j].setRed(rdig + rleft);
+			   	imgpixels[i][j].setGreen(gdig + gleft);
+			   	imgpixels[i][j].setBlue(bdig + bleft);
+		   }
+		   if (i < 10 && j > 600) {
+			   imgpixels[i][j].setColor(Color.YELLOW);
+		   }
+	   }
+   }
+ }
+
+ //small method to check prime number
+ boolean isPrime(int n) {
+     if (n%2==0) return false;
+     for(int i=3;i*i<=n;i+=2) {
+         if(n%i==0)
+             return false;
+     }
+     return true;
+ }
+ 
+ //small method to check if a message number
+ boolean isOP(int n) {
+     if (isPrime(n) && n%2 != 0) {
+    	 return true;
+     }
+     return false;
+ }
+	 
+ 
+ 
+ public void decode()
+ {
+   Pixel[][] imgpixels = this.getPixels2D();
+   //changes the pixels at the message location
+   for (int i = 0; i < imgpixels.length; i++) {
+	   for (int j = 0; j < imgpixels[i].length;j++) {
+		   int rdig = imgpixels[i][j].getRed()%10;
+		   int gdig = imgpixels[i][j].getGreen()%10;
+		   int bdig = imgpixels[i][j].getBlue()%10;
+		   if (isOP(rdig) && isOP(gdig) && isOP(bdig)) {
+			   imgpixels[i][j].setColor(Color.RED);
+		   }
+		   else {
+			  imgpixels[i][j].setColor(Color.GREEN); 
+		   }
+	   }
+   }
+ }
   
   /* Main method for testing - each class in Java can have a main 
    * method 
