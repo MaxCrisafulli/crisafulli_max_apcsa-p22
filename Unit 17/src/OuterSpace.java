@@ -237,7 +237,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			keys[3] = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE && pressed == false)
-		{System.out.println("Space Pressed");
+		{
 			pressed = true;
 			keys[4] = true;
 		}
@@ -282,7 +282,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
    	{
    		while(true)
    		{
-   		   Thread.currentThread().sleep(12);
+   		   Thread.currentThread().sleep(10);
             repaint();
          }
       }catch(Exception e)
