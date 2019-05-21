@@ -605,8 +605,88 @@ public void mirrorHorizontalBotToTop()
 			  imgpixels[i][j].setColor(Color.BLACK); 
 		   }
 	   }
+   	 }
+   }
+   
+//-------------------------------BOBBY'S CODE-------------------------------------
+ 
+ public void bobencode(Picture msg)
+ {
+   Pixel[][] imgpixels = this.getPixels2D();
+   Pixel[][] msgpixels = msg.getPixels2D();
+   Boolean[][] msglocs = new Boolean[msgpixels.length][msgpixels[0].length];
+   
+   
+   //generates a boolean matrix of message pixel locations
+   for (int i = 0; i < msgpixels.length; i++) {
+	   for (int j = 0; j < msgpixels[i].length;j++) {
+		   if (msgpixels[i][j].getRed() > 100 && msgpixels[i][j].getBlue() > 100 && msgpixels[i][j].getGreen() > 100) { 
+			   msglocs[i][j] = true;
+		   }
+		   else {
+			   msglocs[i][j] = false;
+		   }
+	   }
+   }
+   //changes the pixels at the message location
+   for (int i = 0; i < imgpixels.length; i++) {
+	   for (int j = 0; j < imgpixels[i].length;j++) {
+			int rdig = imgpixels[i][j].getRed()%10;
+		   	int gdig = imgpixels[i][j].getGreen()%10;
+		   	int bdig = imgpixels[i][j].getBlue()%10;
+		   	int rleft = imgpixels[i][j].getRed() - rdig;
+		   	int gleft = imgpixels[i][j].getGreen() - gdig;
+		   	int bleft = imgpixels[i][j].getBlue() - bdig;
+		   if (msglocs[i][j] == true) { //if its the message it will set the final digit to odd prime numbers
+		   	rdig = 3;
+		   	while (!ismult3(gdig)) {
+			   	gdig++;
+		   	}
+		   	while (!ismult3(bdig)) {
+			   	bdig++;
+		   	}
+		   }
+		   else {
+			   rdig = 2;
+		   }
+		   	imgpixels[i][j].setRed(rdig + rleft);
+		   	imgpixels[i][j].setGreen(gdig + gleft);
+		   	imgpixels[i][j].setBlue(bdig + bleft);
+		   if (i < 10 && j > 600) {
+			   imgpixels[i][j].setColor(Color.YELLOW);
+		   }
+	   }
    }
  }
+
+ //small method to check if a message number
+ boolean ismult3(int n) {
+     if (n%3 == 0 && n!= 0) {
+    	 return true;
+     }
+     return false;
+ }
+	 
+ 
+ 
+ public void bobdecode()
+ {
+   Pixel[][] imgpixels = this.getPixels2D();
+   //changes the pixels at the message location
+   for (int i = 0; i < imgpixels.length; i++) {
+	   for (int j = 0; j < imgpixels[i].length;j++) {
+		   int rdig = imgpixels[i][j].getRed()%10;
+		   int gdig = imgpixels[i][j].getGreen()%10;
+		   int bdig = imgpixels[i][j].getBlue()%10;
+		   if (rdig == 3 && ismult3(gdig) && ismult3(bdig)) {
+			   imgpixels[i][j].setColor(Color.WHITE);
+		   }
+		   else {
+			  imgpixels[i][j].setColor(Color.BLACK); 
+		   }
+	   }
+   }  
+}
   
   /* Main method for testing - each class in Java can have a main 
    * method 

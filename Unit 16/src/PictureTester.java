@@ -188,6 +188,20 @@ public class PictureTester
     beach.explore();
   }
   
+  /** Method to test edgeDetection2 */
+  public static void bobexttest()
+  {
+    
+	Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+    Picture msg = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\msg.jpg");
+    msg.explore();
+    beach.explore();
+    beach.bobencode(msg);
+    beach.explore();
+    beach.bobdecode();
+    beach.explore();
+  }
+  
   
   //make a testing method for encoding
   //display original image (beach)
@@ -227,6 +241,7 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-	  exttest();
+	//exttest();
+	  bobexttest();
   }
 }
