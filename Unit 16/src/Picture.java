@@ -599,10 +599,10 @@ public void mirrorHorizontalBotToTop()
 		   int gdig = imgpixels[i][j].getGreen()%10;
 		   int bdig = imgpixels[i][j].getBlue()%10;
 		   if (isOP(rdig) && isOP(gdig) && isOP(bdig)) {
-			   imgpixels[i][j].setColor(Color.RED);
+			   imgpixels[i][j].setColor(Color.WHITE);
 		   }
 		   else {
-			  imgpixels[i][j].setColor(Color.GREEN); 
+			  imgpixels[i][j].setColor(Color.BLACK); 
 		   }
 	   }
    }
