@@ -179,7 +179,7 @@ public class PictureTester
   {
     
 	Picture beach = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\beach.jpg");
-    Picture msg = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\msg.jpg");
+    Picture msg = new Picture("H:\\APCSA\\Unit 16\\Unit16-Assignments-pixLab\\images\\logi.jpg");
     msg.explore();
     beach.explore();
     beach.encode(msg);
@@ -220,7 +220,7 @@ public class PictureTester
     //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
-    //testChromakey();                //DONT HAVE TO DO ANYTHING AFTER THIS
+    //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();

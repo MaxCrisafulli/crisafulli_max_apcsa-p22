@@ -511,11 +511,11 @@ public void mirrorHorizontalBotToTop()
    //generates a boolean matrix of message pixel locations
    for (int i = 0; i < msgpixels.length; i++) {
 	   for (int j = 0; j < msgpixels[i].length;j++) {
-		   if (msgpixels[i][j].getRed() > 100 && msgpixels[i][j].getBlue() > 100 && msgpixels[i][j].getGreen() > 100) { 
-			   msglocs[i][j] = true;
+		   if (msgpixels[i][j].getRed() > 200 && msgpixels[i][j].getBlue() > 200 && msgpixels[i][j].getGreen() > 200) { 
+			   msglocs[i][j] = false;
 		   }
 		   else {
-			   msglocs[i][j] = false;
+			   msglocs[i][j] = true;
 		   }
 	   }
    }
@@ -596,10 +596,10 @@ public void mirrorHorizontalBotToTop()
 		   int gdig = imgpixels[i][j].getGreen()%10;
 		   int bdig = imgpixels[i][j].getBlue()%10;
 		   if (isOP(rdig) && isOP(gdig) && isOP(bdig)) {
-			   imgpixels[i][j].setColor(Color.WHITE);  
+			   imgpixels[i][j].setColor(Color.BLACK);  
 		   }
 		   else {
-			  imgpixels[i][j].setColor(Color.BLACK); 
+			  imgpixels[i][j].setColor(Color.WHITE); 
 		   }
 	   }
    	 }
